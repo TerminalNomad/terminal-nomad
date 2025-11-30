@@ -127,7 +127,7 @@ const LINKS: LinkItem[] = [
   {
     id: '6',
     title: 'CashApp',
-    url: '#',
+    url: 'https://cash.app/$TerminalNomad',
     icon: DollarSign,
     category: LinkCategory.SUPPORT,
     color: '#00D632'
