@@ -16,6 +16,7 @@ import { ProfileHeader } from './components/ProfileHeader';
 import { SocialButton } from './components/SocialButton';
 import { FeaturedVideo } from './components/FeaturedVideo';
 import { LocationMap } from './components/LocationMap';
+import { AboutPage } from './components/AboutPage';
 import { LinkItem, LinkCategory } from './types';
 
 // Custom PayPal Icon
@@ -139,8 +140,12 @@ const LINKS: LinkItem[] = [
   },
 ];
 
+type ViewState = 'home' | 'about';
+
 export default function App() {
+  const [currentView, setCurrentView] = useState<ViewState>('home');
   const [location, setLocation] = useState('Locating...');
+  
   const socialLinks = LINKS.filter(link => link.category === LinkCategory.SOCIAL);
   const supportLinks = LINKS.filter(link => link.category === LinkCategory.SUPPORT);
 
@@ -184,59 +189,84 @@ export default function App() {
       });
   }, []);
 
+  const handleAboutClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView('about');
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-brand-dark">
       
-      <ProfileHeader location={location} />
-      
-      <main className="flex-grow w-full max-w-md mx-auto px-6 pb-20 relative z-40">
-        
-        {/* Featured Video Section */}
-        <FeaturedVideo videoId="nD-L6ljjwhs" />
+      {/* Conditional Rendering based on currentView state */}
+      {currentView === 'home' ? (
+        <>
+          <ProfileHeader location={location} onAboutClick={handleAboutClick} />
+          
+          <main className="flex-grow w-full max-w-md md:max-w-6xl mx-auto px-6 pb-20 relative z-40">
+            
+            {/* Responsive Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+              
+              {/* Left Column (Desktop) - Visual Media */}
+              <div className="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
+                <FeaturedVideo videoId="nD-L6ljjwhs" />
+                <LocationMap location={location} />
+              </div>
 
-        {/* Live Map Section */}
-        <LocationMap location={location} />
-        
-        {/* Socials Section */}
-        <div className="mb-12 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-            Connect
-          </h2>
-          <div className="space-y-3">
-            {socialLinks.map(link => (
-              <SocialButton key={link.id} item={link} />
-            ))}
-          </div>
-        </div>
+              {/* Right Column (Desktop) - Actionable Links */}
+              <div className="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
+                
+                {/* Socials Section */}
+                <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                  <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center md:text-left">
+                    Connect
+                  </h2>
+                  <div className="space-y-3">
+                    {socialLinks.map(link => (
+                      <SocialButton key={link.id} item={link} />
+                    ))}
+                  </div>
+                </div>
 
-        {/* Support Section */}
-        <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-            Support the Journey
-          </h2>
-          <div className="space-y-3">
-            {supportLinks.map(link => (
-              <SocialButton key={link.id} item={link} />
-            ))}
-          </div>
-        </div>
+                {/* Support Section */}
+                <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                  <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center md:text-left">
+                    Support the Journey
+                  </h2>
+                  <div className="space-y-3">
+                    {supportLinks.map(link => (
+                      <SocialButton key={link.id} item={link} />
+                    ))}
+                  </div>
+                </div>
 
-        {/* Testimonials & Business */}
-        <div className="mt-12 flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-           <a href="#" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono">
-             <MessageSquareQuote size={16} />
-             <span>Testimonials</span>
-           </a>
+                {/* Testimonials & Business */}
+                <div className="flex flex-col items-center md:items-start gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+                  <a href="#" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center md:justify-start">
+                    <MessageSquareQuote size={16} />
+                    <span>Testimonials</span>
+                  </a>
 
-           <a href="mailto:contact@terminalnomad.com" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono">
-             <Mail size={16} />
-             <span>Business Inquiries</span>
-           </a>
-        </div>
+                  <a href="mailto:contact@terminalnomad.com" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center md:justify-start">
+                    <Mail size={16} />
+                    <span>Business Inquiries</span>
+                  </a>
+                </div>
 
-      </main>
+              </div>
 
-      <footer className="py-8 text-center text-slate-600 text-sm relative z-40">
+            </div>
+
+          </main>
+        </>
+      ) : (
+        /* About Page View */
+        <main className="flex-grow w-full relative z-40">
+           <AboutPage onBack={() => setCurrentView('home')} />
+        </main>
+      )}
+
+      <footer className="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
         <p className="mb-2">© 2025 Terminal Nomad, LLC.</p>
         <p className="text-xs opacity-50">Designed for the edge.</p>
       </footer>

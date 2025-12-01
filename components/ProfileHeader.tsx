@@ -1,12 +1,13 @@
 
 import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, User } from 'lucide-react';
 
 interface ProfileHeaderProps {
   location: string;
+  onAboutClick: () => void;
 }
 
-export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location }) => {
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location, onAboutClick }) => {
   return (
     <div className="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}
@@ -42,10 +43,19 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location }) => {
           Chasing horizons & terminal velocity<br />around the globe.
         </p>
 
-        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-slate-600 backdrop-blur-md text-xs md:text-sm font-mono text-brand-accent uppercase tracking-widest shadow-lg">
+        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-slate-600 backdrop-blur-md text-xs md:text-sm font-mono text-brand-accent uppercase tracking-widest shadow-lg mb-6">
           <MapPin size={14} />
           <span>Currently: {location}</span>
         </div>
+
+        {/* About Me Button */}
+        <button
+          onClick={onAboutClick}
+          className="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/30 hover:border-brand-accent/50 transition-all text-brand-accent hover:text-white font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95"
+        >
+            <User size={16} />
+            <span>About Me</span>
+        </button>
       </div>
     </div>
   );
