@@ -1,19 +1,24 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { 
   Instagram, 
   Facebook, 
   Youtube, 
   Wallet, 
   DollarSign, 
-  Zap, // For Zelle
-  Square, // For Square
-  LucideProps
+  Zap, 
+  Square,
+  LucideProps,
+  Mail,
+  MessageSquareQuote
 } from 'lucide-react';
 import { ProfileHeader } from './components/ProfileHeader';
 import { SocialButton } from './components/SocialButton';
+import { FeaturedVideo } from './components/FeaturedVideo';
+import { LocationMap } from './components/LocationMap';
 import { LinkItem, LinkCategory } from './types';
 
-// Custom PayPal Icon since it's not in Lucide standard set
+// Custom PayPal Icon
 const PaypalIcon = React.forwardRef<SVGSVGElement, LucideProps>(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
   return (
     <svg
@@ -135,14 +140,62 @@ const LINKS: LinkItem[] = [
 ];
 
 export default function App() {
+  const [location, setLocation] = useState('Locating...');
   const socialLinks = LINKS.filter(link => link.category === LinkCategory.SOCIAL);
   const supportLinks = LINKS.filter(link => link.category === LinkCategory.SUPPORT);
 
+  useEffect(() => {
+    // Your specific Google Sheet CSV link
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7Ty_cQhXUU0PXT2u2-LtmW_K8TFKa5luFJGSPRZqEbcduP5NojkcLJ4qASHSZuOPdaw4UMe4yvnu_/pub?output=csv';
+
+    fetch(sheetUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.text();
+      })
+      .then((csvText) => {
+        // Parse the CSV: Split by new line to get rows
+        const rows = csvText.split('\n');
+        
+        // Row 0 is headers, Row 1 is your data
+        if (rows.length > 1) {
+          // Split the data row by commas
+          const cells = rows[1].split(',');
+          
+          // Clean up the data (remove quotes if Google adds them)
+          const city = cells[0]?.replace(/"/g, '').trim();
+          const state = cells[1]?.replace(/"/g, '').trim();
+          const country = cells[2]?.replace(/"/g, '').trim();
+
+          // Filter out empty values and join with commas
+          const locationString = [city, state, country].filter(Boolean).join(', ');
+          
+          if (locationString) {
+            setLocation(locationString);
+          }
+        }
+      })
+      .catch((error) => {
+        console.warn("Could not fetch dynamic location, using fallback:", error);
+        // Fallback to default location
+        setLocation('Raeford, NC, USA');
+      });
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col bg-brand-dark">
-      <ProfileHeader />
+      
+      <ProfileHeader location={location} />
       
       <main className="flex-grow w-full max-w-md mx-auto px-6 pb-20 relative z-40">
+        
+        {/* Featured Video Section */}
+        <FeaturedVideo videoId="nD-L6ljjwhs" />
+
+        {/* Live Map Section */}
+        <LocationMap location={location} />
         
         {/* Socials Section */}
         <div className="mb-12 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
@@ -168,10 +221,23 @@ export default function App() {
           </div>
         </div>
 
+        {/* Testimonials & Business */}
+        <div className="mt-12 flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+           <a href="#" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono">
+             <MessageSquareQuote size={16} />
+             <span>Testimonials</span>
+           </a>
+
+           <a href="mailto:contact@terminalnomad.com" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono">
+             <Mail size={16} />
+             <span>Business Inquiries</span>
+           </a>
+        </div>
+
       </main>
 
       <footer className="py-8 text-center text-slate-600 text-sm relative z-40">
-        <p className="mb-2">© {new Date().getFullYear()} Terminal Nomad.</p>
+        <p className="mb-2">© 2025 Terminal Nomad, LLC.</p>
         <p className="text-xs opacity-50">Designed for the edge.</p>
       </footer>
     </div>

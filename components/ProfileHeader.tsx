@@ -1,51 +1,12 @@
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import { MapPin } from 'lucide-react';
 
-export const ProfileHeader: React.FC = () => {
-  const [locationText, setLocationText] = useState('Locating...');
+interface ProfileHeaderProps {
+  location: string;
+}
 
-  useEffect(() => {
-    // Your specific Google Sheet CSV link
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7Ty_cQhXUU0PXT2u2-LtmW_K8TFKa5luFJGSPRZqEbcduP5NojkcLJ4qASHSZuOPdaw4UMe4yvnu_/pub?output=csv';
-
-    fetch(sheetUrl)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.text();
-      })
-      .then((csvText) => {
-        // Parse the CSV: Split by new line to get rows
-        const rows = csvText.split('\n');
-        
-        // Row 0 is headers, Row 1 is your data
-        if (rows.length > 1) {
-          // Split the data row by commas
-          const cells = rows[1].split(',');
-          
-          // Clean up the data (remove quotes if Google adds them)
-          const city = cells[0]?.replace(/"/g, '').trim();
-          const state = cells[1]?.replace(/"/g, '').trim();
-          const country = cells[2]?.replace(/"/g, '').trim();
-
-          // Filter out empty values and join with commas
-          const locationString = [city, state, country].filter(Boolean).join(', ');
-          
-          if (locationString) {
-            setLocationText(locationString);
-          } else {
-            throw new Error('Empty location data parsed');
-          }
-        }
-      })
-      .catch((error) => {
-        console.warn("Could not fetch dynamic location, using fallback:", error);
-        // Fallback to default location
-        setLocationText('Raeford, NC, USA');
-      });
-  }, []);
-
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location }) => {
   return (
     <div className="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}
@@ -83,7 +44,7 @@ export const ProfileHeader: React.FC = () => {
 
         <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-slate-600 backdrop-blur-md text-xs md:text-sm font-mono text-brand-accent uppercase tracking-widest shadow-lg">
           <MapPin size={14} />
-          <span>Currently: {locationText}</span>
+          <span>Currently: {location}</span>
         </div>
       </div>
     </div>
