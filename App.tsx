@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   Instagram, 
@@ -261,7 +260,7 @@ export default function App() {
                 
                 {/* Left Column (Desktop) - Visual Media */}
                 <div className="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
-                  <FeaturedVideo videoId="nD-L6ljjwhs" />
+                  <FeaturedVideo videoId="mqipTSa6EQU" />
                   <LocationMap location={location} />
                   <TestimonialCarousel onReadMore={() => handleTestimonialsClick()} />
                 </div>
