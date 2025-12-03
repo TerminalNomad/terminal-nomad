@@ -1,13 +1,14 @@
 
 import React from 'react';
-import { MapPin, User } from 'lucide-react';
+import { MapPin, User, Briefcase } from 'lucide-react';
 
 interface ProfileHeaderProps {
   location: string;
   onAboutClick: () => void;
+  onWorkClick: () => void;
 }
 
-export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location, onAboutClick }) => {
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location, onAboutClick, onWorkClick }) => {
   return (
     <div className="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}
@@ -48,14 +49,26 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ location, onAboutC
           <span>Currently: {location}</span>
         </div>
 
-        {/* About Me Button */}
-        <button
-          onClick={onAboutClick}
-          className="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent/10 hover:bg-brand-accent/20 border border-brand-accent/30 hover:border-brand-accent/50 transition-all text-brand-accent hover:text-white font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95"
-        >
-            <User size={16} />
-            <span>About Me</span>
-        </button>
+        {/* Buttons */}
+        <div className="flex flex-wrap justify-center gap-4">
+            {/* About Me */}
+            <button
+            onClick={onAboutClick}
+            className="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent hover:bg-white border border-transparent transition-all text-brand-dark font-bold font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20"
+            >
+                <User size={16} />
+                <span>About Me</span>
+            </button>
+
+            {/* Work With Me */}
+            <button
+            onClick={onWorkClick}
+            className="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent hover:bg-white border border-transparent transition-all text-brand-dark font-bold font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20"
+            >
+                <Briefcase size={16} />
+                <span>Work With Me</span>
+            </button>
+        </div>
       </div>
     </div>
   );

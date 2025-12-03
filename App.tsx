@@ -17,7 +17,9 @@ import { SocialButton } from './components/SocialButton';
 import { FeaturedVideo } from './components/FeaturedVideo';
 import { LocationMap } from './components/LocationMap';
 import { AboutPage } from './components/AboutPage';
+import { WorkWithMePage } from './components/WorkWithMePage';
 import { TestimonialsPage } from './components/TestimonialsPage';
+import { TestimonialCarousel } from './components/TestimonialCarousel';
 import { LinkItem, LinkCategory } from './types';
 
 // Custom PayPal Icon
@@ -63,6 +65,27 @@ const TikTokIcon = React.forwardRef<SVGSVGElement, LucideProps>(({ color = 'curr
   );
 });
 
+// Custom Snapchat Icon
+const SnapchatIcon = React.forwardRef<SVGSVGElement, LucideProps>(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
+  return (
+    <svg
+      ref={ref}
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2.5c-2.3 0-5.5 1.7-5.5 6 0 2.5 1.2 3.6 1.2 5 0 1.2-1 1.7-1.7 1.7-1 0-1.5.8-1.5 1.8 0 1.8 2.2 2.5 3.5 2.5.5 0 1 .5 1 1 0 .6-.7 1-1.5 1-.3 0-.5.2-.5.5 0 .5 1 .5 2 .5 1.5 0 3-.2 5-.5 2 .3 3.5.5 5 .5 1 0 2 0 2-.5 0-.3-.2-.5-.5-.5-.8 0-1.5-.4-1.5-1 0-.5.5-1 1-1 1.3 0 3.5-.7 3.5-2.5 0-1-.5-1.8-1.5-1.8-.7 0-1.7-.5-1.7-1.7 0-1.4 1.2-2.5 1.2-5 0-4.3-3.2-6-5.5-6z" />
+    </svg>
+  );
+});
+
 const LINKS: LinkItem[] = [
   // Socials
   {
@@ -96,6 +119,14 @@ const LINKS: LinkItem[] = [
     icon: Facebook,
     category: LinkCategory.SOCIAL,
     color: '#1877F2'
+  },
+  {
+    id: '10',
+    title: 'Snapchat',
+    url: 'https://www.snapchat.com/add/TerminalNomad',
+    icon: SnapchatIcon,
+    category: LinkCategory.SOCIAL,
+    color: '#FFFC00'
   },
   
   // Support - Order: Venmo, PayPal, Square, Zelle, CashApp
@@ -141,7 +172,7 @@ const LINKS: LinkItem[] = [
   },
 ];
 
-type ViewState = 'home' | 'about' | 'testimonials';
+type ViewState = 'home' | 'about' | 'testimonials' | 'work';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<ViewState>('home');
@@ -195,8 +226,13 @@ export default function App() {
     setCurrentView('about');
   };
 
-  const handleTestimonialsClick = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const handleWorkClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentView('work');
+  };
+
+  const handleTestimonialsClick = (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setCurrentView('testimonials');
   };
@@ -205,12 +241,18 @@ export default function App() {
     switch (currentView) {
       case 'about':
         return <AboutPage onBack={() => setCurrentView('home')} />;
+      case 'work':
+        return <WorkWithMePage onBack={() => setCurrentView('home')} />;
       case 'testimonials':
         return <TestimonialsPage onBack={() => setCurrentView('home')} />;
       default:
         return (
           <>
-            <ProfileHeader location={location} onAboutClick={handleAboutClick} />
+            <ProfileHeader 
+              location={location} 
+              onAboutClick={handleAboutClick} 
+              onWorkClick={handleWorkClick}
+            />
             
             <main className="flex-grow w-full max-w-md md:max-w-6xl mx-auto px-6 pb-20 relative z-40">
               
@@ -221,6 +263,7 @@ export default function App() {
                 <div className="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
                   <FeaturedVideo videoId="nD-L6ljjwhs" />
                   <LocationMap location={location} />
+                  <TestimonialCarousel onReadMore={() => handleTestimonialsClick()} />
                 </div>
 
                 {/* Right Column (Desktop) - Actionable Links */}
