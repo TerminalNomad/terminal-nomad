@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Terminal Nomad</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <script type='text/javascript' nonce='0aMCpaPnzfFrImIQZUhUDg==' src='https://aistudio.google.com/AkyVMnzTaQ38nIagna0W4exwgyRS2DkiKUlGCQDWUi2Xo2VQunkU6h62e0J6gNIcARnfsxFdj_Wy2BZW9i8gOY215f3mDk-wd3e0gweRUZqiR2qSDg2i7s7FdHNK-wjsyhpHl_6OeM_sRrqAIWqzNWuggGOiyFNGKe99gnjdWfNP3VmR6CX5kxQFV9yC9wa3NIiXjFeTbvtvvYsh_2jR75Rn_QpoRRH9ZfAvpj7t9diQhQ4XTfa4u6lShWG5rRmoWA5VPeQ1SZGNq-mSJVJoeVUQgxy1ZcVGR8TIGTPW-op2wv9ijMOc_A5hWFnXBSmTCyJqugtkYaJY89RGfNKhETAZTXaIP0T0pv0146VD3xtuQCeFQPkNezDXAiT8SI2DAiIMvIt_kg1TIGuT0CubSWAbigdIP9R0diEUlvl1C3vhfiqMMdkitgRjoIsvvy02QeglZtoplO_qNxjoB7Eb7V0RsBYOwabsbGdMBSYX_z5L_edW801c6Bsz5VYNZrdTA2Vcr80SGr57FDqcQipa4UayoCRw0AJIxCF-8lEDLhei37-JX0l9NNGfHd4HiT5F1Z54GkVqVswNpHZWe2-lNsgTt-hEXvzsFngjKYPL-5UPtp9vSw'></script><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -24,11 +24,21 @@
             },
             animation: {
               'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+              'bounce-x': 'bounceX 1s infinite',
+              'bounce-x-reverse': 'bounceXReverse 1s infinite',
             },
             keyframes: {
               fadeInUp: {
                 '0%': { opacity: '0', transform: 'translateY(10px)' },
                 '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              bounceX: {
+                '0%, 100%': { transform: 'translateX(-25%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
+                '50%': { transform: 'translateX(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
+              },
+              bounceXReverse: {
+                '0%, 100%': { transform: 'translateX(25%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
+                '50%': { transform: 'translateX(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
               }
             }
           }
