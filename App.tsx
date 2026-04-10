@@ -269,30 +269,12 @@ export default function App() {
                   </div>
 
 {/* Testimonials & Business */}
-<div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-  <a href="#" onClick={handleTestimonialsClick} className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-    <MessageSquareQuote size={16} />
-                      <span>Testimonials</span>
-                    </a>
-
-                    <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <mail size="{16}"/>
-                      <span>Business Inquiries</span>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </main>
-          </>
-        );
-    }
-  };
-
-  return (
-    <div classname="min-h-screen flex flex-col bg-brand-dark">
+        <div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+          <a href="#" onClick={handleTestimonialsClick} className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+            <MessageSquareQuote size={16} />
+            <span>Testimonials & Business</span>
+          </a>
+        </div>
       
 {/* Popup System */}
         <Popup onSubscribe={() => {
