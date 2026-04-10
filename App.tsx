@@ -27,9 +27,9 @@ import { HandcamPage } from './components/HandcamPage';
 import { LinkItem, LinkCategory } from './types';
 
 // Custom PayPal Icon
-const PaypalIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
+const PaypalIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
   return (
-    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
+    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
       <path d="M17.5 8.5c-.5-3-3.5-5-6.5-5H6.5a1 1 0 0 0-1 1v15h4l1-6h2c3 0 5.5-2 6-5.5Z"/>
       <path d="m10.5 14.5.5-3"/>
     </svg>
@@ -37,18 +37,18 @@ const PaypalIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'c
 });
 
 // Custom TikTok Icon
-const TikTokIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
+const TikTokIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
   return (
-    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
+    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
     </svg>
   );
 });
 
 // Custom Snapchat Icon
-const SnapchatIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
+const SnapchatIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
   return (
-    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
+    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2.5c-2.3 0-5.5 1.7-5.5 6 0 2.5 1.2 3.6 1.2 5 0 1.2-1 1.7-1.7 1.7-1 0-1.5.8-1.5 1.8 0 1.8 2.2 2.5 3.5 2.5.5 0 1 .5 1 1 0 .6-.7 1-1.5 1-.3 0-.5.2-.5.5 0 .5 1 .5 2 .5 1.5 0 3-.2 5-.5 2 .3 3.5.5 5 .5 1 0 2 0 2-.5 0-.3-.2-.5-.5-.5-.8 0-1.5-.4-1.5-1 0-.5.5-1 1-1 1.3 0 3.5-.7 3.5-2.5 0-1-.5-1.8-1.5-1.8-.7 0-1.7-.5-1.7-1.7 0-1.4 1.2-2.5 1.2-5 0-4.3-3.2-6-5.5-6z"/>
     </svg>
   );
