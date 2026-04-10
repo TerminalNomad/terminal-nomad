@@ -275,7 +275,7 @@ export default function App() {
             <span>Testimonials & Business</span>
           </a>
         </div>
-      
+      </div>
 {/* Popup System */}
         <Popup onSubscribe={() => {
           window.scrollTo({ top: 0, behavior: 'smooth' });
