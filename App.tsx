@@ -165,7 +165,7 @@ const LINKS: LinkItem[] = [
 
 type ViewState = 'home' | 'about' | 'testimonials' | 'work' | 'newsletter' | 'support' | 'handcam';
 
-export default function App() {
+function App() {
   const [currentView, setCurrentView] = useState<viewstate>('home');
   const [location, setLocation] = useState('Locating...');
   
