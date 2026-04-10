@@ -268,10 +268,10 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Testimonials & Business */}
-                  <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{{" animationdelay:="" '0.4s'="" }}="">
-                    <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <messagesquarequote size="{16}"/>
+{/* Testimonials & Business */}
+<div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+  <a href="#" onClick={handleTestimonialsClick} className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+    <MessageSquareQuote size={16} />
                       <span>Testimonials</span>
                     </a>
 
