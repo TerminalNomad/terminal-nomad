@@ -239,103 +239,20 @@ switch (currentView) {
           return <AboutPage onBack={() => setCurrentView('home')} />;
         case 'work':
           return <WorkWithMePage onBack={() => setCurrentView('home')} />;
+        case 'support':
+          return <SupportPage onBack={() => setCurrentView('home')} links={LINKS} />;
+        case 'handcam':
+          return <HandcamPage onBack={() => setCurrentView('home')} />;
         default:
           return null;
       }
-      case 'support':
-        return <supportpage onback="{()" ==""> setCurrentView('home')} links={LINKS} />;
-      case 'handcam':
-        return <handcampage onback="{()" ==""> setCurrentView('home')} />;
-      default:
-        return (
-          <>
-            <profileheader location="{location}" onaboutclick="{handleAboutClick}" onworkclick="{handleWorkClick}" onhandcamclick="{handleHandcamClick}"/>
-            
-            <main classname="flex-grow w-full max-w-md md:max-w-6xl mx-auto px-6 pb-20 relative z-40">
-              
-              {/* Responsive Grid Layout */}
-              <div classname="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
-                
-                {/* Left Column (Desktop) - Visual Media */}
-                <div classname="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
-                  <featuredvideo videoid="mqipTSa6EQU"/>
-                  <locationmap location="{location}"/>
-                  <testimonialcarousel onreadmore="{()" ==""> handleTestimonialsClick()} />
-                </div>
+    };
 
-                {/* Right Column (Desktop) - Actionable Links */}
-                <div classname="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
-                  
-                  {/* Socials Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.1s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                      Connect
-                    </h2>
-                    <div classname="space-y-3">
-                      {socialLinks.map(link => (
-                        <socialbutton key="{link.id}" item="{link}"/>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Support Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                      Support the Journey
-                    </h2>
-                    <div classname="space-y-3">
-                      {supportLinks.map(link => (
-                        <socialbutton key="{link.id}" item="{link}"/>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Testimonials & Business */}
-                  <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{{" animationdelay:="" '0.4s'="" }}="">
-                    <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <messagesquarequote size="{16}"/>
-                      <span>Testimonials</span>
-                    </a>
-
-                    <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <mail size="{16}"/>
-                      <span>Business Inquiries</span>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-
-            </main>
-          </>
-        );
-    }
-  };
-
-  return (
-    <div classname="min-h-screen flex flex-col bg-brand-dark">
-      
-      {/* Popup System */}
-      <popup onsubscribe="{()" ==""> {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setCurrentView('newsletter');
-        }}
-        onSupport={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setCurrentView('support');
-        }} 
-      />
-
-      {/* Main Content Rendered Conditionally */}
-      <main classname="flex-grow w-full relative z-40">
+    return (
+      <div className="min-h-screen bg-black text-white p-4 font-mono selection:bg-white selection:text-black">
         {renderContent()}
-      </main>
-
-      <footer classname="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
-        <p classname="mb-2">© 2025 Terminal Nomad, LLC.</p>
-        <p classname="text-xs opacity-50">Designed for the edge.</p>
-      </footer>
-    </div>
-  );
+      </div>
+    );
 }
+
+export default App;
