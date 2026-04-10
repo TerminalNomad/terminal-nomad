@@ -29,7 +29,7 @@ import { LinkItem, LinkCategory } from './types';
 // Custom PayPal Icon
 const PaypalIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
   return (
-    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
+    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} ...
       <path d="M17.5 8.5c-.5-3-3.5-5-6.5-5H6.5a1 1 0 0 0-1 1v15h4l1-6h2c3 0 5.5-2 6-5.5Z"/>
       <path d="m10.5 14.5.5-3"/>
     </svg>
