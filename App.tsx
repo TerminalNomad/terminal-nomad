@@ -236,9 +236,9 @@ export default function App() {
                 
                 {/* Left Column (Desktop) - Visual Media */}
                 <div classname="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
-                  <featuredvideo videoid="mqipTSa6EQU"/>
-                  <locationmap location="{location}"/>
-                  <testimonialcarousel onreadmore="{()" ==""> handleTestimonialsClick()} />
+                	<FeaturedVideo videoId="mqipTSa6EQU" />
+			<LocationMap location={location} />
+			<TestimonialCarousel onReadMore={() => handleTestimonialsClick()} />
                 </div>
 
                 {/* Right Column (Desktop) - Actionable Links */}
