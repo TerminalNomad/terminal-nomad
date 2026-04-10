@@ -245,8 +245,8 @@ export default function App() {
                 <div classname="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
                   
                   {/* Socials Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.1s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+               		   <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+  				<h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                       Connect
                     </h2>
                     <div classname="space-y-3">
