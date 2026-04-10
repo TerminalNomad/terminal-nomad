@@ -212,18 +212,18 @@ export default function App() {
 
   const renderContent = () => {
     switch (currentView) {
-      case 'about':
-        return <aboutpage onback="{()" ==""> setCurrentView('home')} />;
-      case 'work':
-        return <workwithmepage onback="{()" ==""> setCurrentView('home')} />;
-      case 'testimonials':
-        return <testimonialspage onback="{()" ==""> setCurrentView('home')} />;
-      case 'newsletter':
-        return <newsletterpage onback="{()" ==""> setCurrentView('home')} />;
-      case 'support':
-        return <supportpage onback="{()" ==""> setCurrentView('home')} links={LINKS} />;
-      case 'handcam':
-        return <handcampage onback="{()" ==""> setCurrentView('home')} />;
+	case 'about':
+          return <AboutPage onBack={() => setCurrentView('home')} />;
+        case 'work':
+          return <WorkWithMePage onBack={() => setCurrentView('home')} />;
+        case 'testimonials':
+          return <TestimonialsPage onBack={() => setCurrentView('home')} />;
+        case 'newsletter':
+          return <NewsletterPage onBack={() => setCurrentView('home')} />;
+        case 'support':
+          return <SupportPage onBack={() => setCurrentView('home')} links={LINKS} />;
+        case 'handcam':
+          return <HandcamPage onBack={() => setCurrentView('home')} />;
       default:
         return (
           <>
