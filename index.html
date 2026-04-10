@@ -1,67 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Terminal Nomad</title>
-    <script type='text/javascript' nonce='XblqRHHqwQtlhZD1/YPRtA==' src='https://aistudio.google.com/EbK-aYKvPzuTrt4LK3j3x1b_UV_jsvMv_fyoSDcLJCSniDyHF6572N9MN4r3mekInBXn5IahhQ2s38MtKZG_X8s86gljedpurP_YkLTRncxiax6CI7izguaBByAIzVADfAINwJjIjY56hsMI6QQuOAuOe02FExYcCevcJxgaK3BRfpSEmNLmA4PkEPgh3_HdkHBR20DWCs292fDSny3WUhHaW7PKvdn2Exp1owiLiLRacGZibjwtCCvMBQp-HRKJs64iAG2Y4HRoXz-lUravSsHTdT3s709TJvBRwA7ji1TJR7DEl0UKNK2_rBnX-rFOBHTU9eYoHcpUyoHctRQ24e_2_RtdCQvU4mxQ4kVnZruybpnW1u9zEKoSWsR3yO0iVHNnFsUaCKujr9MCg4xitCEnb9GCKNgur9WdAcyYuXBJlYD-t4Pmnz6P5Cr5ETbcTpwlA8cVLZ_sABHSEtkwUdZC5Y68X7LxChnsssr7JjER6HOTG8WYHDuXdX4l4U2oAfY5kD7viPbnXk6iN2f4zI-kNqGN2bE4pFKVEc5qhF0kIzswHS1_xYkiZ5TOXnhBEDegWZVrQKSSekmZ1YshunYQ4C5ZNYuE8Ha_8iP-oY-hyLFt3g'></script><script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              mono: ['JetBrains Mono', 'monospace'],
-            },
-            colors: {
-              brand: {
-                dark: '#0f172a',
-                accent: '#06b6d4', // Cyan-500
-                surface: '#1e293b',
-              }
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-              'bounce-x': 'bounceX 1s infinite',
-              'bounce-x-reverse': 'bounceXReverse 1s infinite',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              },
-              bounceX: {
-                '0%, 100%': { transform: 'translateX(-25%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
-                '50%': { transform: 'translateX(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
-              },
-              bounceXReverse: {
-                '0%, 100%': { transform: 'translateX(25%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
-                '50%': { transform: 'translateX(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-brand-dark text-slate-200 antialiased selection:bg-brand-accent selection:text-brand-dark">
+  <script type='text/javascript' nonce='xIk/zf6Bqg0ZGW2ygSAI1w==' src='https://aistudio.google.com/eafZ8XS05r1T5oAY7ADKm33sQePITnoeUbY20L2CDS343pZu4-x3SqIO15yr4tYeUSBKiVR2wxzNyxYNJos4VGDHYWQ_7CAQjY3xen7dJEv71T0aSF8tyO4hmsPQ7Oakde7i26E10NKpTRDJxu7gj_y59wST4RAhEgl-NYiRhsDiIpmw6rFLejBTH3JuPFm2fyBgiElkiLdrP-It4OTWmpGksDU8GlZzBjCBZ1bMOb5-3_bjyzFh3IsRqUN8epae8z_33yA66D1rS334zXE1pUU36rU89X_uz0HwTm3QAkNw6eDBr3bvU2fKfvNM-Swedrfi1Ju1ZotgBNOHSi1Bs_efO6juHL753Q5entljmho1OsYFEnxdgz7yjXAS46m_qtZK7dWDYYOrdTx9yMKgfvEjFoEryPT5tO_865lH2BqSnzpW4EL0r_gZ2PWt2Frezrn-7I8Tf9URkhodS1-nculMKFS8Gflk9WgJMddwOb__yXaAsElR9p5XteAXHO6cNWA5dcTjBWGm-OixUKz9B0gDV-_e26nL1KxitnUtyrW9Mi_KJmY9yLIc2Htbq3c4S0Wo_bJ4ekKLjUYj7xCtZTV2MJy_nRYKmB23X0wdMAga0cJY1w'></script></head>
+  <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

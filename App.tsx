@@ -27,9 +27,9 @@ import { HandcamPage } from './components/HandcamPage';
 import { LinkItem, LinkCategory } from './types';
 
 // Custom PayPal Icon
-const PaypalIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
+const PaypalIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
   return (
-    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
       <path d="M17.5 8.5c-.5-3-3.5-5-6.5-5H6.5a1 1 0 0 0-1 1v15h4l1-6h2c3 0 5.5-2 6-5.5Z"/>
       <path d="m10.5 14.5.5-3"/>
     </svg>
@@ -37,18 +37,18 @@ const PaypalIcon = React.forwardRef(({ color = 'currentColor', size = 24, stroke
 });
 
 // Custom TikTok Icon
-const TikTokIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
+const TikTokIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
   return (
-    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
       <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
     </svg>
   );
 });
 
 // Custom Snapchat Icon
-const SnapchatIcon = React.forwardRef(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }: any, ref: any) => {
+const SnapchatIcon = React.forwardRef<svgsvgelement, lucideprops="">(({ color = 'currentColor', size = 24, strokeWidth = 2, ...props }, ref) => {
   return (
-    <svg ref={ref} {...props} xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round">
+    <svg ref="{ref}" {...props}="" xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewbox="0 0 24 24" fill="none" stroke="{color}" strokewidth="{strokeWidth}" strokelinecap="round" strokelinejoin="round">
       <path d="M12 2.5c-2.3 0-5.5 1.7-5.5 6 0 2.5 1.2 3.6 1.2 5 0 1.2-1 1.7-1.7 1.7-1 0-1.5.8-1.5 1.8 0 1.8 2.2 2.5 3.5 2.5.5 0 1 .5 1 1 0 .6-.7 1-1.5 1-.3 0-.5.2-.5.5 0 .5 1 .5 2 .5 1.5 0 3-.2 5-.5 2 .3 3.5.5 5 .5 1 0 2 0 2-.5 0-.3-.2-.5-.5-.5-.8 0-1.5-.4-1.5-1 0-.5.5-1 1-1 1.3 0 3.5-.7 3.5-2.5 0-1-.5-1.8-1.5-1.8-.7 0-1.7-.5-1.7-1.7 0-1.4 1.2-2.5 1.2-5 0-4.3-3.2-6-5.5-6z"/>
     </svg>
   );
@@ -212,18 +212,18 @@ export default function App() {
 
   const renderContent = () => {
     switch (currentView) {
-	case 'about':
-          return <AboutPage onBack={() => setCurrentView('home')} />;
-        case 'work':
-          return <WorkWithMePage onBack={() => setCurrentView('home')} />;
-        case 'testimonials':
-          return <TestimonialsPage onBack={() => setCurrentView('home')} />;
-        case 'newsletter':
-          return <NewsletterPage onBack={() => setCurrentView('home')} />;
-        case 'support':
-          return <SupportPage onBack={() => setCurrentView('home')} links={LINKS} />;
-        case 'handcam':
-          return <HandcamPage onBack={() => setCurrentView('home')} />;
+      case 'about':
+        return <aboutpage onback="{()" ==""> setCurrentView('home')} />;
+      case 'work':
+        return <workwithmepage onback="{()" ==""> setCurrentView('home')} />;
+      case 'testimonials':
+        return <testimonialspage onback="{()" ==""> setCurrentView('home')} />;
+      case 'newsletter':
+        return <newsletterpage onback="{()" ==""> setCurrentView('home')} />;
+      case 'support':
+        return <supportpage onback="{()" ==""> setCurrentView('home')} links={LINKS} />;
+      case 'handcam':
+        return <handcampage onback="{()" ==""> setCurrentView('home')} />;
       default:
         return (
           <>
@@ -236,17 +236,17 @@ export default function App() {
                 
                 {/* Left Column (Desktop) - Visual Media */}
                 <div classname="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
-                	<FeaturedVideo videoId="mqipTSa6EQU" />
-			<LocationMap location={location} />
-			<TestimonialCarousel onReadMore={() => handleTestimonialsClick()} />
+                  <featuredvideo videoid="mqipTSa6EQU"/>
+                  <locationmap location="{location}"/>
+                  <testimonialcarousel onreadmore="{()" ==""> handleTestimonialsClick()} />
                 </div>
 
                 {/* Right Column (Desktop) - Actionable Links */}
                 <div classname="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
                   
                   {/* Socials Section */}
-               		   <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-  				<h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.1s'="" }}="">
+                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                       Connect
                     </h2>
                     <div classname="space-y-3">
@@ -257,8 +257,8 @@ export default function App() {
                   </div>
 
                   {/* Support Section */}
-                  <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-			  <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
+                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                       Support the Journey
                     </h2>
                     <div classname="space-y-3">
@@ -268,24 +268,51 @@ export default function App() {
                     </div>
                   </div>
 
-{/* Testimonials & Business */}
-        <div className="flex flex-col items-center gap-4 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-          <a href="#" onClick={handleTestimonialsClick} className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-            <MessageSquareQuote size={16} />
-            <span>Testimonials & Business</span>
-          </a>
-        </div>
-      </div>
-{/* Popup System */}
-        <Popup onSubscribe={() => {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          setCurrentView('newsletter');
-        }} />
+                  {/* Testimonials & Business */}
+                  <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{{" animationdelay:="" '0.4s'="" }}="">
+                    <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                      <messagesquarequote size="{16}"/>
+                      <span>Testimonials</span>
+                    </a>
+
+                    <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                      <mail size="{16}"/>
+                      <span>Business Inquiries</span>
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </main>
+          </>
+        );
+    }
+  };
+
+  return (
+    <div classname="min-h-screen flex flex-col bg-brand-dark">
+      
+      {/* Popup System */}
+      <popup onsubscribe="{()" ==""> {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setCurrentView('newsletter');
+        }}
+        onSupport={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setCurrentView('support');
+        }} 
+      />
+
+      {/* Main Content Rendered Conditionally */}
+      <main classname="flex-grow w-full relative z-40">
+        {renderContent()}
       </main>
 
-      <footer className="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
-        <p className="mb-2">© 2025 Terminal Nomad, LLC.</p>
-        <p className="text-xs opacity-50">Designed for the edge.</p>
+      <footer classname="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
+        <p classname="mb-2">© 2025 Terminal Nomad, LLC.</p>
+        <p classname="text-xs opacity-50">Designed for the edge.</p>
       </footer>
     </div>
   );
