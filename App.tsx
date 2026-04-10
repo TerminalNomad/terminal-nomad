@@ -257,8 +257,8 @@ export default function App() {
                   </div>
 
                   {/* Support Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                  <div className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+			  <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                       Support the Journey
                     </h2>
                     <div classname="space-y-3">
