@@ -9,7 +9,7 @@ if (!rootElement) {
 
 const root = ReactDOM.createRoot(rootElement);
 root.render(
-  <React.Strictmode>
+  <React.StrictMode>
     <App/>
   </React.StrictMode>
 );
