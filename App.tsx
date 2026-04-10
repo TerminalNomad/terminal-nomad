@@ -294,25 +294,16 @@ export default function App() {
   return (
     <div classname="min-h-screen flex flex-col bg-brand-dark">
       
-      {/* Popup System */}
-      <popup onsubscribe="{()" ==""> {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setCurrentView('newsletter');
-        }}
-        onSupport={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setCurrentView('support');
-        }} 
-      />
-
-      {/* Main Content Rendered Conditionally */}
-      <main classname="flex-grow w-full relative z-40">
-        {renderContent()}
+{/* Popup System */}
+        <Popup onSubscribe={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setCurrentView('newsletter');
+        }} />
       </main>
 
-      <footer classname="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
-        <p classname="mb-2">© 2025 Terminal Nomad, LLC.</p>
-        <p classname="text-xs opacity-50">Designed for the edge.</p>
+      <footer className="py-8 text-center text-slate-600 text-sm relative z-40 border-t border-white/5 mt-auto">
+        <p className="mb-2">© 2025 Terminal Nomad, LLC.</p>
+        <p className="text-xs opacity-50">Designed for the edge.</p>
       </footer>
     </div>
   );
