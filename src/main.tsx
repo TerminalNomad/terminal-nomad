@@ -45,14 +45,14 @@ if (rootElement) {
     setTimeout(() => {
       if (rootElement.innerHTML === "") {
         console.error("FALLBACK TRIGGERED: Root is still empty!");
-        rootElement.innerHTML = "<h1 style="color:orange; padding: 50px;">FALLBACK: React failed to render content.</h1>";
+        rootElement.innerHTML = "<h1>FALLBACK: React failed to render content.</h1>";
       }
     }, 3000);
     
   } catch (err) {
     console.error("MOUNT ERROR:", err);
     if (rootElement) {
-      rootElement.innerHTML = `<h1 style="color:red; padding: 50px;">MOUNT ERROR: ${err}</h1>`;
+      rootElement.innerHTML = "<h1>MOUNT ERROR OCCURRED</h1>";
     }
   }
 } else {
