@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
@@ -11,14 +11,30 @@ window.addEventListener('unhandledrejection', (event) => {
 });
 
 // Move App component here temporarily to debug import issues
+const appStyle: React.CSSProperties = { 
+  minHeight: '100vh', 
+  display: 'flex', 
+  flexDirection: 'column', 
+  backgroundColor: '#0f172a', 
+  alignItems: 'center', 
+  justifyContent: 'center',
+  color: 'white',
+  zIndex: 9999,
+  position: 'relative'
+};
+
+const titleStyle: React.CSSProperties = { fontSize: '3rem', fontWeight: 'bold', margin: 0 };
+const textStyle: React.CSSProperties = { color: '#94a3b8' };
+const debugBoxStyle: React.CSSProperties = { marginTop: '20px', padding: '10px', border: '1px solid white' };
+
 function App() {
   console.log("App Component Rendering... (Inside App function)");
   return (
-    <div style="{{" minheight:="" '100vh',="" display:="" 'flex',="" flexdirection:="" 'column',="" backgroundcolor:="" '#0f172a',="" alignitems:="" 'center',="" justifycontent:="" 'center',="" color:="" 'white',="" zindex:="" 9999,="" position:="" 'relative'="" }}="">
-      <h1 style="{{" fontsize:="" '3rem',="" fontweight:="" 'bold',="" margin:="" 0="" }}="">TERMINAL NOMAD</h1>
-      <p style="{{" color:="" '#94a3b8'="" }}="">If you see this, the app is rendering.</p>
-      <div style="{{" margintop:="" '20px',="" padding:="" '10px',="" border:="" '1px="" solid="" white'="" }}="">
-        React Version: {React.version}
+    <div style="{appStyle}">
+      <h1 style="{titleStyle}">TERMINAL NOMAD</h1>
+      <p style="{textStyle}">If you see this, the app is rendering.</p>
+      <div style="{debugBoxStyle}">
+        Build Timestamp: {new Date().toISOString()}
       </div>
     </div>
   );
