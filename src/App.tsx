@@ -1,4 +1,5 @@
 
+console.log("App.tsx module executing...");
 import React, { useState, useEffect } from 'react';
 import { 
   Instagram, 
@@ -294,6 +295,9 @@ export default function App() {
 
   return (
     <div classname="min-h-screen flex flex-col bg-brand-dark">
+      <div classname="fixed top-0 left-0 z-[9999] bg-red-600 text-white px-4 py-2 font-bold text-xs">
+        DEBUG: APP RENDERING
+      </div>
       
       {/* Popup System */}
       <popup onsubscribe="{()" ==""> {
