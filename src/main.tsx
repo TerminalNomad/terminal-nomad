@@ -1,48 +1,52 @@
-import React, { useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-import './index.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
-window.addEventListener('error', (event) => {
-  console.error("GLOBAL ERROR CAUGHT:", event.error);
-});
+console.log("Terminal Nomad App Initializing...");
 
-const containerStyle: React.CSSProperties = { 
-  minHeight: '100vh', 
-  display: 'flex', 
-  flexDirection: 'column', 
-  backgroundColor: '#064e3b', 
-  alignItems: 'center', 
-  justifyContent: 'center',
-  color: 'white',
-  fontFamily: 'sans-serif'
-};
+// 1. Force Root Visibility
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  rootElement.style.display = 'block';
+  rootElement.style.visibility = 'visible';
+  rootElement.style.opacity = '1';
+  rootElement.style.minHeight = '100vh';
+  console.log("Root element forced to visible.");
+}
 
-const h1Style: React.CSSProperties = { fontSize: '4rem', margin: 0 };
-const pStyle: React.CSSProperties = { fontSize: '1.5rem', opacity: 0.8 };
-
-function DebugApp() {
-  useEffect(() => {
-    console.log("DebugApp MOUNTED to DOM");
-  }, []);
-
+// 2. Simple Component with immediate logging
+function App() {
+  console.log("App function EXECUTING...");
   return (
-    <div style="{containerStyle}">
-      <h1 style="{h1Style}">REACT IS WORKING</h1>
-      <p style="{pStyle}">If you see this GREEN screen, React is healthy.</p>
-      <p>Timestamp: {new Date().toLocaleTimeString()}</p>
+    <div style="{{" padding:="" '100px',="" background:="" 'blue',="" color:="" 'white',="" fontsize:="" '30px',="" textalign:="" 'center'="" }}="">
+      <h1>BLUE SCREEN = REACT EXECUTED</h1>
+      <p>If you see this, React is definitely working.</p>
     </div>
   );
 }
 
-console.log("Terminal Nomad App Initializing...");
-const rootElement = document.getElementById('root');
-
+// 3. Mount with extra safety
 if (rootElement) {
-  console.log("Found root element, creating React root...");
-  const root = createRoot(rootElement);
-  console.log("Calling root.render...");
-  root.render(<debugapp/>);
-  console.log("root.render call finished.");
+  try {
+    console.log("Creating root...");
+    const root = ReactDOM.createRoot(rootElement);
+    console.log("Root created. Calling render...");
+    root.render(React.createElement(App));
+    console.log("Render called.");
+    
+    // Fallback: If nothing happens in 3 seconds, show a message
+    setTimeout(() => {
+      if (rootElement.innerHTML === "") {
+        console.error("FALLBACK TRIGGERED: Root is still empty!");
+        rootElement.innerHTML = "<h1 style="color:orange; padding: 50px;">FALLBACK: React failed to render content.</h1>";
+      }
+    }, 3000);
+    
+  } catch (err) {
+    console.error("MOUNT ERROR:", err);
+    if (rootElement) {
+      rootElement.innerHTML = `<h1 style="color:red; padding: 50px;">MOUNT ERROR: ${err}</h1>`;
+    }
+  }
 } else {
-  console.error("Root element NOT FOUND");
+  console.error("ROOT NOT FOUND");
 }
