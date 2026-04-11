@@ -248,9 +248,9 @@ export default function App() {
                   
                   {/* Socials Section */}
                   {(() => {
-                    const socialDelay = { animationDelay: '0.1s' };
+                    const delay = { animationDelay: '0.1s' };
                     return (
-                      <div classname="animate-fade-in-up" style="{socialDelay}">
+                      <div classname="animate-fade-in-up" style="{delay}">
                         <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                           Connect
                         </h2>
@@ -265,9 +265,9 @@ export default function App() {
 
                   {/* Support Section */}
                   {(() => {
-                    const supportDelay = { animationDelay: '0.3s' };
+                    const delay = { animationDelay: '0.3s' };
                     return (
-                      <div classname="animate-fade-in-up" style="{supportDelay}">
+                      <div classname="animate-fade-in-up" style="{delay}">
                         <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
                           Support the Journey
                         </h2>
@@ -282,9 +282,9 @@ export default function App() {
 
                   {/* Testimonials & Business */}
                   {(() => {
-                    const businessDelay = { animationDelay: '0.4s' };
+                    const delay = { animationDelay: '0.4s' };
                     return (
-                      <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{businessDelay}">
+                      <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{delay}">
                         <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
                           <messagesquarequote size="{16}"/>
                           <span>Testimonials</span>
