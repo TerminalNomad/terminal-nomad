@@ -247,41 +247,56 @@ export default function App() {
                 <div classname="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
                   
                   {/* Socials Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.1s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                      Connect
-                    </h2>
-                    <div classname="space-y-3">
-                      {socialLinks.map(link => (
-                        <socialbutton key="{link.id}" item="{link}"/>
-                      ))}
-                    </div>
-                  </div>
+                  {(() => {
+                    const socialDelay = { animationDelay: '0.1s' };
+                    return (
+                      <div classname="animate-fade-in-up" style="{socialDelay}">
+                        <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                          Connect
+                        </h2>
+                        <div classname="space-y-3">
+                          {socialLinks.map(link => (
+                            <socialbutton key="{link.id}" item="{link}"/>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   {/* Support Section */}
-                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
-                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                      Support the Journey
-                    </h2>
-                    <div classname="space-y-3">
-                      {supportLinks.map(link => (
-                        <socialbutton key="{link.id}" item="{link}"/>
-                      ))}
-                    </div>
-                  </div>
+                  {(() => {
+                    const supportDelay = { animationDelay: '0.3s' };
+                    return (
+                      <div classname="animate-fade-in-up" style="{supportDelay}">
+                        <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                          Support the Journey
+                        </h2>
+                        <div classname="space-y-3">
+                          {supportLinks.map(link => (
+                            <socialbutton key="{link.id}" item="{link}"/>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })()}
 
                   {/* Testimonials & Business */}
-                  <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{{" animationdelay:="" '0.4s'="" }}="">
-                    <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <messagesquarequote size="{16}"/>
-                      <span>Testimonials</span>
-                    </a>
+                  {(() => {
+                    const businessDelay = { animationDelay: '0.4s' };
+                    return (
+                      <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{businessDelay}">
+                        <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                          <messagesquarequote size="{16}"/>
+                          <span>Testimonials</span>
+                        </a>
 
-                    <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                      <mail size="{16}"/>
-                      <span>Business Inquiries</span>
-                    </a>
-                  </div>
+                        <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                          <mail size="{16}"/>
+                          <span>Business Inquiries</span>
+                        </a>
+                      </div>
+                    );
+                  })()}
 
                 </div>
 
