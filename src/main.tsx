@@ -14,10 +14,18 @@ if (rootElement) {
 }
 
 // 2. Simple Component with immediate logging
+const blueStyle: React.CSSProperties = { 
+  padding: '100px', 
+  background: 'blue', 
+  color: 'white', 
+  fontSize: '30px',
+  textAlign: 'center'
+};
+
 function App() {
   console.log("App function EXECUTING...");
   return (
-    <div style="{{" padding:="" '100px',="" background:="" 'blue',="" color:="" 'white',="" fontsize:="" '30px',="" textalign:="" 'center'="" }}="">
+    <div style="{blueStyle}">
       <h1>BLUE SCREEN = REACT EXECUTED</h1>
       <p>If you see this, React is definitely working.</p>
     </div>
