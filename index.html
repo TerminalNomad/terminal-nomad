@@ -1,13 +1,57 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terminal Nomad</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet">
-  <script type='text/javascript' nonce='jJ5Kb+FSrBba2fhMm8QV+A==' src='https://aistudio.google.com/5oDntgKfjGiPexVEhkVbvoUKuYtx3aqFaQ8zMSRQg5ZBR_0MuQ0MqjcsFvKD8fmzq4VH5sG3rHxCyDh3dsR8vZm5Ca5SKPZSSavZtiJb2DkxIH4mNiKRTrVbNynuh9XxK_fEFyApABCNM7lq0dBG-GGnxCV8wk_JyfGWHh8MW-HBMafi4VM5QL2CPBFN4bmKdz1p4ineU3vxd1iv2NhQhunNTmVgs3bvHLtEAjFwU76tEYNnrFRz3G4u0Vpq0EA7YYp4ohMTPgvFrKXGR8HGg7A2IgRAtQsauWzejppxOE0ygH7004gXTI_mIPUGGKAjYlDmugc4gjry4yZIlwGIZRF6_hksXfSbGnV4v_xQAg-I8FKzteTcdVqdfu0zo7vSr92gDPDTlMib63U4NMGWpyoP9Pl1ssQnfbqdZaW5BW2cCSUaZphVZKgrK7RY7IJWoQ_Jj0TMNBThmhsQil4-trs3g6sC1KUZNJrZKbGPPIGaDM5eQ9pxbS9_t-EEwPl0GI9ZHSekctKCr2_w9T7OzWlLh1fpq6eLlXR4HWHFvoi47l-6JKUFQXFUvviCsEdI6-q5vupCzQQqDeDas1LWYKa5QxSzETQgXy_JGW_SOWiBZDTCZA'></script></head>
-  <body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              brand: {
+                dark: '#0f172a',
+                accent: '#06b6d4', // Cyan-500
+                surface: '#1e293b',
+              }
+            },
+            animation: {
+              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+            },
+            keyframes: {
+              fadeInUp: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-brand-dark text-slate-200 antialiased selection:bg-brand-accent selection:text-brand-dark">
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <script type="module" src="/index.tsx"></script>
+</body>
 </html>

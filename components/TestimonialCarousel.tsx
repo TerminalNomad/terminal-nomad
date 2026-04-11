@@ -44,7 +44,7 @@ const TESTIMONIALS = [
   }
 ];
 
-export const TestimonialCarousel: React.FC<testimonialcarouselprops> = ({ onReadMore }) => {
+export const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ onReadMore }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -57,44 +57,50 @@ export const TestimonialCarousel: React.FC<testimonialcarouselprops> = ({ onRead
   const activeTestimonial = TESTIMONIALS[activeIndex];
 
   return (
-    <div classname="w-full mb-8 animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
-       <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+    <div className="w-full mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+       <h2 className="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
         Reviews
       </h2>
-      <div onclick="{onReadMore}" classname="relative bg-slate-900 border border-white/10 rounded-xl p-8 min-h-[240px] flex flex-col items-center text-center cursor-pointer group hover:border-brand-accent/30 transition-all shadow-xl overflow-hidden">
+      <div 
+        onClick={onReadMore}
+        className="relative bg-slate-900 border border-white/10 rounded-xl p-8 min-h-[240px] flex flex-col items-center text-center cursor-pointer group hover:border-brand-accent/30 transition-all shadow-xl overflow-hidden"
+      >
         {/* Background Icon */}
-        <div classname="absolute top-0 right-0 p-8 opacity-[0.03] text-white pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700">
-           <messagesquarequote size="{120}"/>
+        <div className="absolute top-0 right-0 p-8 opacity-[0.03] text-white pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700">
+           <MessageSquareQuote size={120} />
         </div>
 
          {/* Stars */}
-         <div classname="flex gap-1 mb-6 relative z-10">
+         <div className="flex gap-1 mb-6 relative z-10">
             {[...Array(activeTestimonial.rating)].map((_, i) => (
-            <star key="{i}" size="{16}" classname="text-brand-accent fill-brand-accent"/>
+            <Star key={i} size={16} className="text-brand-accent fill-brand-accent" />
             ))}
         </div>
         
         {/* Text */}
-        <p key="{activeIndex}" classname="text-slate-300 italic mb-6 font-light text-lg leading-relaxed relative z-10 animate-fade-in-up">
+        <p key={activeIndex} className="text-slate-300 italic mb-6 font-light text-lg leading-relaxed relative z-10 animate-fade-in-up">
             "{activeTestimonial.text}"
         </p>
 
         {/* Author */}
-        <div classname="mt-auto relative z-10">
-            <div classname="text-white font-bold font-mono text-sm">{activeTestimonial.name}</div>
-            <div classname="text-brand-accent/80 text-xs font-mono uppercase tracking-wider">{activeTestimonial.role}</div>
+        <div className="mt-auto relative z-10">
+            <div className="text-white font-bold font-mono text-sm">{activeTestimonial.name}</div>
+            <div className="text-brand-accent/80 text-xs font-mono uppercase tracking-wider">{activeTestimonial.role}</div>
         </div>
 
         {/* Indicators */}
-         <div classname="absolute bottom-4 flex gap-2">
+         <div className="absolute bottom-4 flex gap-2">
             {TESTIMONIALS.map((_, idx) => (
-                <div key="{idx}" classname="{`h-1" rounded-full="" transition-all="" duration-300="" ${idx="==" activeindex="" ?="" 'w-6="" bg-brand-accent'="" :="" 'w-1.5="" bg-slate-700'}`}=""/>
+                <div 
+                    key={idx} 
+                    className={`h-1 rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-6 bg-brand-accent' : 'w-1.5 bg-slate-700'}`}
+                />
             ))}
          </div>
       </div>
       
-      <div classname="text-center mt-2">
-         <button onclick="{onReadMore}" classname="text-xs text-slate-500 hover:text-brand-accent transition-colors font-mono uppercase tracking-widest">
+      <div className="text-center mt-2">
+         <button onClick={onReadMore} className="text-xs text-slate-500 hover:text-brand-accent transition-colors font-mono uppercase tracking-widest">
             Read all logs
          </button>
       </div>
