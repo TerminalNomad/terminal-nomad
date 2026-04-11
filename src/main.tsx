@@ -5,7 +5,7 @@ import './index.css';
 // 1. Global Error Catcher (Visual)
 window.onerror = function(msg, url, line) {
   const errDiv = document.createElement('div');
-  errDiv.style.cssText = "background:red; color:white; padding:20px; position:fixed; top:0; left:0; right:0; z-index:99999; font-family:monospace;";
+  errDiv.className = "bg-red-600 text-white p-5 fixed top-0 left-0 right-0 z-[99999] font-mono";
   errDiv.innerHTML = `CRITICAL ERROR: ${msg} <br/> at ${url}:${line}`;
   document.body.appendChild(errDiv);
   return false;
@@ -50,7 +50,8 @@ if (rootElement) {
       if (rootElement.children.length === 0) {
         console.warn("WARNING: Root is still empty after 2 seconds.");
         const warning = document.createElement('div');
-        warning.innerHTML = "<h1 style="color:yellow; background:black; padding:20px;">WARNING: React called render but DOM is empty.</h1>";
+        warning.className = "p-10 bg-black text-yellow-400 font-bold text-2xl";
+        warning.innerText = "WARNING: React called render but DOM is empty.";
         document.body.appendChild(warning);
       }
     }, 2000);
@@ -58,10 +59,11 @@ if (rootElement) {
   } catch (err) {
     console.error("FAILED TO CREATE ROOT OR RENDER:", err);
     const failDiv = document.createElement('div');
-    failDiv.innerHTML = `<h1 style="color:red; background:white; padding:50px;">MOUNT FAILED: ${err}</h1>`;
+    failDiv.className = "bg-white text-red-600 p-10 text-2xl font-bold";
+    failDiv.innerText = `MOUNT FAILED: ${err}`;
     document.body.appendChild(failDiv);
   }
 } else {
   console.error("CRITICAL: #root element not found in the DOM!");
-  document.body.innerHTML = "<h1 style="color:red; padding:50px;">CRITICAL: #root element not found!</h1>";
+  document.body.innerHTML = "<h1 class="text-red-600 p-10 text-2xl font-bold">CRITICAL: #root element not found!</h1>";
 }
