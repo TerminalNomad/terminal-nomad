@@ -10,11 +10,7 @@ const rootElement = document.getElementById('root');
 if (rootElement) {
   console.log("Root element found. Rendering App...");
   const root = createRoot(rootElement);
-  root.render(
-    <react.strictmode>
-      <app/>
-    </React.StrictMode>
-  );
+  root.render(<app/>);
 } else {
   console.error("Root element not found!");
 }
