@@ -42,28 +42,23 @@ function App() {
 
 console.log("Terminal Nomad App Initializing...");
 const rootElement = document.getElementById('root');
-if (!rootElement) {
-  console.error("CRITICAL: Could not find root element #root");
-  throw new Error("Could not find root element to mount to");
+
+if (rootElement) {
+  console.log("Manual Injection: Setting innerHTML...");
+  rootElement.innerHTML = `
+    <div style="background: red; color: white; padding: 50px; min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 9999; position: relative;">
+      <h1 style="font-size: 5rem; margin: 0;">JS IS ALIVE</h1>
+      <p style="font-size: 2rem;">If you see this RED screen, the issue is with React.</p>
+      <p>Time: ${new Date().toLocaleTimeString()}</p>
+    </div>
+  `;
+  console.log("Manual Injection: Done.");
+} else {
+  console.error("Manual Injection: Root not found!");
 }
 
-console.log("Root element found:", rootElement);
-console.log("Root element dimensions:", rootElement.getBoundingClientRect());
-
-const root = ReactDOM.createRoot(rootElement);
-try {
-  console.log("Attempting root.render(<app/>)...");
-  root.render(<app/>);
-  console.log("Root.render call completed.");
-  
-  // Check after a short delay if anything was added to the DOM
-  setTimeout(() => {
-    console.log("DOM Check - Root children count:", rootElement.children.length);
-    console.log("DOM Check - Root innerHTML length:", rootElement.innerHTML.length);
-    if (rootElement.children.length === 0) {
-      console.warn("WARNING: Root element is still empty after 1 second.");
-    }
-  }, 1000);
-} catch (error) {
-  console.error("CRITICAL: React render failed synchronously:", error);
-}
+// Keep the rest for debugging but don't let it overwrite the manual test yet
+/*
+const root = ReactDOM.createRoot(rootElement!);
+...
+*/
