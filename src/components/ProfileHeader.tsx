@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { MapPin, User, Briefcase, Camera, ArrowRight, ArrowLeft } from 'lucide-react';
 
@@ -10,13 +9,11 @@ interface ProfileHeaderProps {
 }
 
 export const ProfileHeader: React.FC<profileheaderprops> = ({ location, onAboutClick, onWorkClick, onHandcamClick }) => {
-  const bannerStyle = { objectPosition: 'center 40%' };
-
   return (
     <div classname="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}
       <div classname="w-full h-80 md:h-96 relative overflow-hidden bg-slate-900">
-        <img src="https://lh3.googleusercontent.com/d/1j8RymY3MoVpu5EUmbg6TkanFbP33_bN2" alt="Terminal Nomad Banner" classname="w-full h-full object-cover object-center" style="{bannerStyle}" referrerpolicy="no-referrer" onerror="{(e)" ==""> {
+        <img src="https://lh3.googleusercontent.com/d/1j8RymY3MoVpu5EUmbg6TkanFbP33_bN2" alt="Terminal Nomad Banner" classname="w-full h-full object-cover object-center" style="{{" objectposition:="" 'center="" 40%'="" }}="" referrerpolicy="no-referrer" onerror="{(e)" ==""> {
             console.warn("Google Drive image failed to load, switching to fallback.");
             e.currentTarget.src = "https://images.unsplash.com/photo-1512453979798-5ea904ac6666?q=80&w=1600&auto=format&fit=crop";
           }}
@@ -57,7 +54,7 @@ export const ProfileHeader: React.FC<profileheaderprops> = ({ location, onAboutC
         </div>
 
         <div classname="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-slate-800/90 border border-slate-600 backdrop-blur-md text-xs md:text-sm font-mono text-brand-accent uppercase tracking-widest shadow-lg mb-6">
-          <mappin size="{14}"/>
+          <mappin size="{14}/">
           <span>Currently: {location}</span>
         </div>
 
@@ -65,13 +62,13 @@ export const ProfileHeader: React.FC<profileheaderprops> = ({ location, onAboutC
         <div classname="flex flex-wrap justify-center gap-4">
             {/* About Me */}
             <button onclick="{onAboutClick}" classname="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent hover:bg-white border border-transparent transition-all text-brand-dark font-bold font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20">
-                <user size="{16}"/>
+                <user size="{16}/">
                 <span>About Me</span>
             </button>
 
             {/* Work With Me */}
             <button onclick="{onWorkClick}" classname="group flex items-center gap-2 px-6 py-2 rounded-full bg-brand-accent hover:bg-white border border-transparent transition-all text-brand-dark font-bold font-mono text-sm uppercase tracking-widest hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20">
-                <briefcase size="{16}"/>
+                <briefcase size="{16}/">
                 <span>Work With Me</span>
             </button>
         </div>

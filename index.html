@@ -1,57 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Terminal Nomad</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              mono: ['JetBrains Mono', 'monospace'],
-            },
-            colors: {
-              brand: {
-                dark: '#0f172a',
-                accent: '#06b6d4', // Cyan-500
-                surface: '#1e293b',
-              }
-            },
-            animation: {
-              'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-            },
-            keyframes: {
-              fadeInUp: {
-                '0%': { opacity: '0', transform: 'translateY(10px)' },
-                '100%': { opacity: '1', transform: 'translateY(0)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.3.1",
-    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
-    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
-    "react-dom": "https://esm.sh/react-dom@18.3.1",
-    "lucide-react": "https://esm.sh/lucide-react@0.344.0?external=react",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
-  <body class="bg-brand-dark text-slate-200 antialiased selection:bg-brand-accent selection:text-brand-dark">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Terminal Nomad | Skydiving & Adventure</title>
+    <meta name="description" content="Official portal for Terminal Nomad. Skydiving, adventure, and digital nomad lifestyle."/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;family=JetBrains+Mono:wght@700&amp;display=swap" rel="stylesheet">
+  <script type='text/javascript' nonce='w28MCbdNGqpmgt+8yJoJLg==' src='https://aistudio.google.com/UB_PFmizgWtNugQRVadJiCImjcIx54pnj_5q1a0tJgnqE7TJ1_fxRU6MKTdkT1f2Nq918hEz3SxP9XTrN4Nm4mn68CIybHXonALf7QWRoUg7fZCjDRqjl-vFrcCqZvfGGG5Sdq0b3kdfajw51EU_4PIK1XQXQYcNEDOWOuyoxIMedPyVtq7e8iUthLY-vNguv_8vdNbSftz-5jC-AYizpHa4ycUCyh3Qz6rljmbcfJKn5wldf238cMQgR1168baPAqd8YtNOzlW5wGiNKr1nmPazFe0j9nDezgJlhJUfoi5DVYyTbdVrUqt3FAGwFwUCs2LiZOmFXuC-zsYwWsxfznT--xA5DADAN40UgNy4AVYo0ZxNUJLNAzuwx76lsTTfU5DIFWSKgX7MHzt2yh5sipyUCGgUWbSaiN2PZrPHYqL1KLbuuDi9plI91OYz05lkeLOWGFxg1djqhQD3PWJA-LXkV3r5dPK6RH5M-DgtJrQk77W2OUcWukZkrAipWEBs0BF8Tyvnw1_Ygrc-e3zqLsi0kYh_P6mgNtj3k-tMgy5j1QXfX59GK2Z9ueHBAkT30yD-4qAhQ_3Olj64q5Q02P3Q9hsreZIYhyFHQOtHajhH07c_MQ'></script></head>
+  <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

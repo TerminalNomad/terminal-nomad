@@ -1,5 +1,3 @@
-
-console.log("App.tsx module executing...");
 import React, { useState, useEffect } from 'react';
 import { 
   Instagram, 
@@ -144,7 +142,6 @@ const LINKS: LinkItem[] = [
 type ViewState = 'home' | 'about' | 'testimonials' | 'work' | 'newsletter' | 'support' | 'handcam';
 
 export default function App() {
-  console.log("App Component Rendering...");
   const [currentView, setCurrentView] = useState<viewstate>('home');
   const [location, setLocation] = useState('Locating...');
   
@@ -229,7 +226,7 @@ export default function App() {
       default:
         return (
           <>
-            <profileheader location="{location}" onaboutclick="{handleAboutClick}" onworkclick="{handleWorkClick}" onhandcamclick="{handleHandcamClick}"/>
+            <profileheader location="{location}" onaboutclick="{handleAboutClick}" onworkclick="{handleWorkClick}" onhandcamclick="{handleHandcamClick}/">
             
             <main classname="flex-grow w-full max-w-md md:max-w-6xl mx-auto px-6 pb-20 relative z-40">
               
@@ -239,7 +236,7 @@ export default function App() {
                 {/* Left Column (Desktop) - Visual Media */}
                 <div classname="md:col-span-7 flex flex-col gap-8 order-1 md:order-1">
                   <featuredvideo videoid="mqipTSa6EQU"/>
-                  <locationmap location="{location}"/>
+                  <locationmap location="{location}/">
                   <testimonialcarousel onreadmore="{()" ==""> handleTestimonialsClick()} />
                 </div>
 
@@ -247,56 +244,41 @@ export default function App() {
                 <div classname="md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8">
                   
                   {/* Socials Section */}
-                  {(() => {
-                    const delay = { animationDelay: '0.1s' };
-                    return (
-                      <div classname="animate-fade-in-up" style="{delay}">
-                        <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                          Connect
-                        </h2>
-                        <div classname="space-y-3">
-                          {socialLinks.map(link => (
-                            <socialbutton key="{link.id}" item="{link}"/>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })()}
+                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.1s'="" }}="">
+                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                      Connect
+                    </h2>
+                    <div classname="space-y-3">
+                      {socialLinks.map(link => (
+                        <socialbutton key="{link.id}" item="{link}/">
+                      ))}
+                    </div>
+                  </div>
 
                   {/* Support Section */}
-                  {(() => {
-                    const delay = { animationDelay: '0.3s' };
-                    return (
-                      <div classname="animate-fade-in-up" style="{delay}">
-                        <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-                          Support the Journey
-                        </h2>
-                        <div classname="space-y-3">
-                          {supportLinks.map(link => (
-                            <socialbutton key="{link.id}" item="{link}"/>
-                          ))}
-                        </div>
-                      </div>
-                    );
-                  })()}
+                  <div classname="animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
+                    <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
+                      Support the Journey
+                    </h2>
+                    <div classname="space-y-3">
+                      {supportLinks.map(link => (
+                        <socialbutton key="{link.id}" item="{link}/">
+                      ))}
+                    </div>
+                  </div>
 
                   {/* Testimonials & Business */}
-                  {(() => {
-                    const delay = { animationDelay: '0.4s' };
-                    return (
-                      <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{delay}">
-                        <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                          <messagesquarequote size="{16}"/>
-                          <span>Testimonials</span>
-                        </a>
+                  <div classname="flex flex-col items-center gap-4 animate-fade-in-up" style="{{" animationdelay:="" '0.4s'="" }}="">
+                    <a href="#" onclick="{handleTestimonialsClick}" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                      <messagesquarequote size="{16}/">
+                      <span>Testimonials</span>
+                    </a>
 
-                        <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
-                          <mail size="{16}"/>
-                          <span>Business Inquiries</span>
-                        </a>
-                      </div>
-                    );
-                  })()}
+                    <a href="mailto:zach@terminalnomad.com" classname="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                      <mail size="{16}/">
+                      <span>Business Inquiries</span>
+                    </a>
+                  </div>
 
                 </div>
 
@@ -310,9 +292,6 @@ export default function App() {
 
   return (
     <div classname="min-h-screen flex flex-col bg-brand-dark">
-      <div classname="fixed top-0 left-0 z-[9999] bg-red-600 text-white px-4 py-2 font-bold text-xs">
-        DEBUG: APP RENDERING
-      </div>
       
       {/* Popup System */}
       <popup onsubscribe="{()" ==""> {

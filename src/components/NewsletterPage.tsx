@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { ArrowLeft, Mail, CheckCircle, Send } from 'lucide-react';
 
@@ -7,7 +6,6 @@ interface NewsletterPageProps {
 }
 
 export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
-  const hiddenStyle = { display: 'none' };
 
   useEffect(() => {
     // 1. Define the success callback globally so the external script can call it
@@ -43,7 +41,7 @@ export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
       {/* Header */}
       <div classname="text-center mb-12">
         <div classname="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-accent/10 text-brand-accent mb-6 border border-brand-accent/20">
-          <mail size="{32}"/>
+          <mail size="{32}/">
         </div>
         <h1 classname="text-3xl md:text-5xl font-black text-white font-mono mb-4">
           FLIGHT <span classname="text-brand-accent">BRIEFING</span>
@@ -75,12 +73,11 @@ export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
 
                     <div classname="ml-form-embedSubmit">
                         <button type="submit" classname="primary w-full flex items-center justify-center gap-2 bg-brand-accent hover:bg-white text-brand-dark font-bold py-4 rounded-xl font-mono uppercase tracking-widest transition-all hover:scale-[1.02] shadow-lg shadow-brand-accent/20">
-                             <send size="{18}"/>
+                             <send size="{18}/">
                              <span>Subscribe</span>
                         </button>
                         
-                        {/* Transmitting Button */}
-                        <button disabled="" style="{hiddenStyle}" type="button" classname="loading w-full flex items-center justify-center gap-2 bg-brand-accent/50 text-brand-dark font-bold py-4 rounded-xl font-mono uppercase tracking-widest cursor-wait">
+                        <button disabled="" style="{{" display:="" 'none'="" }}="" type="button" classname="loading w-full flex items-center justify-center gap-2 bg-brand-accent/50 text-brand-dark font-bold py-4 rounded-xl font-mono uppercase tracking-widest cursor-wait">
                             <div classname="ml-form-embedSubmitLoad"></div>
                             <span>Transmitting...</span>
                         </button>
@@ -92,10 +89,10 @@ export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
             </div>
 
             {/* Success Message - Toggled by MailerLite Script via Global Callback */}
-            <div classname="ml-form-successBody row-success" style="{hiddenStyle}">
+            <div classname="ml-form-successBody row-success" style="{{" display:="" 'none'="" }}="">
                 <div classname="ml-form-successContent flex flex-col items-center text-center animate-fade-in-up">
                     <div classname="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-6">
-                        <checkcircle size="{32}"/>
+                        <checkcircle size="{32}/">
                     </div>
                     <h3 classname="text-2xl font-bold text-white font-mono mb-2">Welcome Aboard</h3>
                     <p classname="text-slate-400">You have successfully joined the subscriber list.</p>

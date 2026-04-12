@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Star, MessageSquareQuote } from 'lucide-react';
 
@@ -55,17 +54,16 @@ export const TestimonialCarousel: React.FC<testimonialcarouselprops> = ({ onRead
   }, []);
 
   const activeTestimonial = TESTIMONIALS[activeIndex];
-  const containerStyle = { animationDelay: '0.3s' };
 
   return (
-    <div classname="w-full mb-8 animate-fade-in-up" style="{containerStyle}">
+    <div classname="w-full mb-8 animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
        <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
         Reviews
       </h2>
       <div onclick="{onReadMore}" classname="relative bg-slate-900 border border-white/10 rounded-xl p-8 min-h-[240px] flex flex-col items-center text-center cursor-pointer group hover:border-brand-accent/30 transition-all shadow-xl overflow-hidden">
         {/* Background Icon */}
         <div classname="absolute top-0 right-0 p-8 opacity-[0.03] text-white pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700">
-           <messagesquarequote size="{120}"/>
+           <messagesquarequote size="{120}/">
         </div>
 
          {/* Stars */}
