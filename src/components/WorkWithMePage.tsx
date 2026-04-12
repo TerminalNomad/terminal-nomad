@@ -13,7 +13,7 @@ export const WorkWithMePage = ({ onBack }: WorkWithMePageProps) => {
       className: "group flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors mb-8 font-mono text-sm uppercase tracking-wider" 
     },
       React.createElement(ArrowLeft, { size: 16, className: "group-hover:-translate-x-1 transition-transform" }),
-      "Back to Terminal"
+      "Back to NomadicZack"
     ),
 
     /* Header */
@@ -26,7 +26,7 @@ export const WorkWithMePage = ({ onBack }: WorkWithMePageProps) => {
         React.createElement('span', { className: "text-brand-accent" }, "PROFILE")
       ),
       React.createElement('p', { className: "text-slate-400 text-lg max-w-2xl mx-auto" },
-        "Partner with Terminal Nomad for high-altitude experiences and content."
+        "Partner with NomadicZack for high-altitude experiences and content."
       )
     ),
 
@@ -42,7 +42,7 @@ export const WorkWithMePage = ({ onBack }: WorkWithMePageProps) => {
         React.createElement('p', { className: "text-slate-400 leading-relaxed mb-6" },
           "Want to jump with me? I offer exclusive VIP tandem experiences. I handle the safety, you handle the screaming. Includes premium 4K video and photos."
         ),
-        React.createElement('a', { href: "mailto:zach@terminalnomad.com?subject=Tandem Inquiry", className: "inline-flex items-center text-brand-accent font-mono text-sm uppercase tracking-wider hover:text-white transition-colors" },
+        React.createElement('a', { href: "mailto:zack@terminalnomad.com?subject=Tandem Inquiry", className: "inline-flex items-center text-brand-accent font-mono text-sm uppercase tracking-wider hover:text-white transition-colors" },
           "Book a Jump ",
           React.createElement(ArrowUpRight, { size: 16, className: "ml-2" })
         )
@@ -57,7 +57,7 @@ export const WorkWithMePage = ({ onBack }: WorkWithMePageProps) => {
         React.createElement('p', { className: "text-slate-400 leading-relaxed mb-6" },
           "High-octane content for brands that live on the edge. I create extreme UGC and professional campaigns featuring your product in freefall."
         ),
-        React.createElement('a', { href: "mailto:zach@terminalnomad.com?subject=Brand Partnership", className: "inline-flex items-center text-brand-accent font-mono text-sm uppercase tracking-wider hover:text-white transition-colors" },
+        React.createElement('a', { href: "mailto:zack@terminalnomad.com?subject=Brand Partnership", className: "inline-flex items-center text-brand-accent font-mono text-sm uppercase tracking-wider hover:text-white transition-colors" },
           "Start a Campaign ",
           React.createElement(ArrowUpRight, { size: 16, className: "ml-2" })
         )
@@ -69,7 +69,7 @@ export const WorkWithMePage = ({ onBack }: WorkWithMePageProps) => {
     React.createElement('div', { className: "bg-gradient-to-r from-brand-accent/20 to-blue-600/20 border border-brand-accent/30 rounded-2xl p-8 text-center" },
       React.createElement('h3', { className: "text-2xl font-bold text-white font-mono mb-2" }, "Have something else in mind?"),
       React.createElement('p', { className: "text-slate-300 mb-6" }, "If it involves altitude, adrenaline, or adventure, I'm listening."),
-      React.createElement('a', { href: "mailto:zach@terminalnomad.com", className: "inline-flex items-center gap-2 px-8 py-3 rounded-full bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20" },
+      React.createElement('a', { href: "mailto:zack@terminalnomad.com", className: "inline-flex items-center gap-2 px-8 py-3 rounded-full bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20" },
         "Contact Me"
       )
     )

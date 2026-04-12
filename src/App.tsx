@@ -91,7 +91,7 @@ const LINKS: LinkItem[] = [
   {
     id: '1',
     title: 'Instagram',
-    url: 'https://www.instagram.com/ActAlive',
+    url: 'https://www.instagram.com/thenomadiczack',
     icon: Instagram,
     category: LinkCategory.SOCIAL,
     color: '#E1306C'
@@ -99,7 +99,7 @@ const LINKS: LinkItem[] = [
   {
     id: '2',
     title: 'TikTok',
-    url: 'https://www.tiktok.com/@ActAlive',
+    url: 'https://www.tiktok.com/@nomadiczack',
     icon: TikTokIcon,
     category: LinkCategory.SOCIAL,
     color: '#00F2EA'
@@ -107,7 +107,7 @@ const LINKS: LinkItem[] = [
   {
     id: '3',
     title: 'YouTube',
-    url: 'https://www.youtube.com/@ActAlive',
+    url: 'https://www.youtube.com/@NomadicZack',
     icon: Youtube,
     category: LinkCategory.SOCIAL,
     color: '#FF0000'
@@ -115,25 +115,17 @@ const LINKS: LinkItem[] = [
   {
     id: '4',
     title: 'Facebook',
-    url: 'https://www.facebook.com/ActAlive',
+    url: 'https://www.facebook.com/nomadiczack',
     icon: Facebook,
     category: LinkCategory.SOCIAL,
     color: '#1877F2'
-  },
-  {
-    id: '10',
-    title: 'Snapchat',
-    url: 'https://www.snapchat.com/add/ActAlive',
-    icon: SnapchatIcon,
-    category: LinkCategory.SOCIAL,
-    color: '#FFFC00'
   },
   
   // Support - Order: Venmo, PayPal, Square, Zelle, CashApp
   {
     id: '5',
     title: 'Venmo',
-    url: 'https://www.venmo.com/u/ActAlive',
+    url: 'https://www.venmo.com/u/NomadicZack',
     icon: Wallet, // Generic wallet for Venmo
     category: LinkCategory.SUPPORT,
     color: '#008CFF'
@@ -141,7 +133,7 @@ const LINKS: LinkItem[] = [
   {
     id: '7',
     title: 'PayPal',
-    url: 'https://www.paypal.biz/ActAlive',
+    url: 'https://www.paypal.biz/TerminalNomad',
     icon: PaypalIcon,
     category: LinkCategory.SUPPORT,
     color: '#003087'
@@ -165,7 +157,7 @@ const LINKS: LinkItem[] = [
   {
     id: '6',
     title: 'CashApp',
-    url: 'https://cash.app/$ActAlive',
+    url: 'https://cash.app/$NomadicZack',
     icon: DollarSign,
     category: LinkCategory.SUPPORT,
     color: '#00D632'
@@ -304,7 +296,7 @@ export default function App() {
                     React.createElement('span', null, "Testimonials")
                   ),
                   React.createElement('a', { 
-                    href: "mailto:zach@terminalnomad.com", 
+                    href: "mailto:zack@terminalnomad.com", 
                     className: "inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono p-2 hover:bg-white/5 rounded-lg w-full justify-center" 
                   },
                     React.createElement(Mail, { size: 16 }),

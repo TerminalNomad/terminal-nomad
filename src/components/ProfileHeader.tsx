@@ -34,12 +34,12 @@ export const ProfileHeader = ({ location, onAboutClick, onWorkClick, onHandcamCl
       /* Profile Avatar */
       React.createElement('div', { className: "w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-slate-700 bg-slate-800 flex items-center justify-center shadow-2xl mb-6 overflow-hidden relative group" },
          React.createElement('div', { className: "absolute inset-0 bg-gradient-to-br from-brand-accent to-blue-600 opacity-80" }),
-         React.createElement('span', { className: "relative z-10 text-4xl md:text-5xl font-bold text-white font-mono" }, "TN")
+         React.createElement('span', { className: "relative z-10 text-4xl md:text-5xl font-bold text-white font-mono" }, "NZ")
       ),
 
       React.createElement('h1', { className: "text-4xl md:text-5xl font-black text-white tracking-tighter font-mono mb-2 drop-shadow-xl text-center" },
-        "TERMINAL",
-        React.createElement('span', { className: "text-brand-accent" }, "NOMAD")
+        "NOMADIC",
+        React.createElement('span', { className: "text-brand-accent" }, "ZACK")
       ),
       
       React.createElement('p', { className: "text-slate-200 text-lg font-medium max-w-sm mx-auto leading-relaxed mb-6 text-center drop-shadow-md" },

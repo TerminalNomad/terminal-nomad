@@ -19,7 +19,7 @@ export const SupportPage = ({ onBack, links }: SupportPageProps) => {
       className: "group flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors mb-8 font-mono text-sm uppercase tracking-wider" 
     },
       React.createElement(ArrowLeft, { size: 16, className: "group-hover:-translate-x-1 transition-transform" }),
-      "Back to Terminal"
+      "Back to NomadicZack"
     ),
 
     /* Header */

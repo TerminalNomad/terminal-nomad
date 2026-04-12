@@ -10,35 +10,35 @@ const TESTIMONIALS = [
     id: 1,
     name: "Haley Manning",
     role: "Tandem Student",
-    text: "Zach brought me more pleasure than any man ever could!",
+    text: "Zack brought me more pleasure than any man ever could!",
     rating: 5
   },
   {
     id: 2,
     name: "Charlie Jacobs",
     role: "Tandem Student",
-    text: "My son and I went skydiving for the first time together for his 18th birthday. I went with Zach and Bren, my son went with Jim and Robin. This was the most amazing experience and I would recommend everyone try skydiving at least once. Everyone at Paraclete was fun and made us feel very comfortable and at ease. Thanks Best Friends!",
+    text: "My son and I went skydiving for the first time together for his 18th birthday. I went with Zack and Bren, my son went with Jim and Robin. This was the most amazing experience and I would recommend everyone try skydiving at least once. Everyone at Paraclete was fun and made us feel very comfortable and at ease. Thanks Best Friends!",
     rating: 5
   },
   {
     id: 3,
     name: "Ramesh Swarna",
     role: "Tandem Student",
-    text: "I went skydiving for the first time at Skydive Raleigh, and it was one of the most incredible experiences of my life. From start to finish, the whole team was amazing. The free fall was an unbelievable rush, and once the parachute opened, my instructor Zach even let me take control...",
+    text: "I went skydiving for the first time at Skydive Raleigh, and it was one of the most incredible experiences of my life. From start to finish, the whole team was amazing. The free fall was an unbelievable rush, and once the parachute opened, my instructor Zack even let me take control...",
     rating: 5
   },
   {
     id: 4,
     name: "Courtney Dragiff",
     role: "Tandem Student",
-    text: "Jumped with some friends to celebrate a birthday and Skydive Raleigh was the perfect experience. From checking in with Jody to a truly thrilling jump with Zach, Kelly and Justin, we had an amazing experience and would highly recommend this spot to anyone.",
+    text: "Jumped with some friends to celebrate a birthday and Skydive Raleigh was the perfect experience. From checking in with Jody to a truly thrilling jump with Zack, Kelly and Justin, we had an amazing experience and would highly recommend this spot to anyone.",
     rating: 5
   },
   {
     id: 5,
     name: "Emma",
     role: "Tandem Student",
-    text: "HIGHLY RECOMMEND, i went for my 20th & the experience was amazing!!! i jumped with zach & cody was my videographer. zach was incredibly informative & kept me calm the whole time along with keeping the energy up.",
+    text: "HIGHLY RECOMMEND, i went for my 20th & the experience was amazing!!! i jumped with zack & cody was my videographer. zack was incredibly informative & kept me calm the whole time along with keeping the energy up.",
     rating: 5
   }
 ];

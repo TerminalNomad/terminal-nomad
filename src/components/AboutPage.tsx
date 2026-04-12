@@ -13,7 +13,7 @@ export const AboutPage = ({ onBack }: AboutPageProps) => {
       className: "group flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors mb-8 font-mono text-sm uppercase tracking-wider" 
     },
       React.createElement(ArrowLeft, { size: 16, className: "group-hover:-translate-x-1 transition-transform" }),
-      "Back to Terminal"
+      "Back to NomadicZack"
     ),
 
     /* Header Section */
@@ -40,7 +40,7 @@ export const AboutPage = ({ onBack }: AboutPageProps) => {
           React.createElement('strong', { className: "text-white" }, "I don't just exist; I descend.")
         ),
         React.createElement('p', null,
-          "My name is Zachery, but most know me as the Terminal Nomad. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth, I've dedicated my life to the art of human flight."
+          "My name is Zackery, but most know me as NomadicZack. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth, I've dedicated my life to the art of human flight."
         ),
         React.createElement('p', null,
           "What started as a curiosity quickly turned into an obsession, and then a lifestyle. Now, I travel the globe chasing horizons, teaching others how to fly, and capturing the raw, unfiltered beauty of the world from a perspective few ever get to see."

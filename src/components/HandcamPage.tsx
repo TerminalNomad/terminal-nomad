@@ -14,7 +14,7 @@ export const HandcamPage = ({ onBack }: HandcamPageProps) => {
       className: "group flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors mb-8 font-mono text-sm uppercase tracking-wider" 
     },
       React.createElement(ArrowLeft, { size: 16, className: "group-hover:-translate-x-1 transition-transform" }),
-      "Back to Terminal"
+      "Back to NomadicZack"
     ),
 
     /* Header */
@@ -106,7 +106,7 @@ export const HandcamPage = ({ onBack }: HandcamPageProps) => {
       ),
       React.createElement('div', { className: "bg-white/5 border border-white/10 p-6 rounded-2xl" },
         React.createElement('h5', { className: "text-white font-bold mb-2 font-mono text-sm uppercase" }, "Need help?"),
-        React.createElement('p', { className: "text-slate-400 text-sm" }, "Contact me directly at zach@terminalnomad.com for any questions.")
+        React.createElement('p', { className: "text-slate-400 text-sm" }, "Contact me directly at zack@terminalnomad.com for any questions.")
       )
     )
   );
