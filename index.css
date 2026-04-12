@@ -1,33 +1,50 @@
-@import "tailwindcss";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App';
+import './index.css';
 
-@theme {
-  --color-brand-dark: #0f172a;
-  --color-brand-accent: #06b6d4;
-  --color-brand-surface: #1e293b;
+// 1. Global Error Catcher (Visual)
+window.onerror = function(msg, url, line) {
+  const errDiv = document.createElement('div');
+  errDiv.className = "bg-red-600 text-white p-5 fixed top-0 left-0 right-0 z-[99999] font-mono text-sm";
+  errDiv.innerHTML = `CRITICAL ERROR: ${msg} <br/> at ${url}:${line}`;
+  document.body.appendChild(errDiv);
+  return false;
+};
+
+console.log("Terminal Nomad App Initializing...");
+
+const rootElement = document.getElementById('root');
+
+if (rootElement) {
+  console.log("Root element found. Starting React mount...");
   
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  try {
+    const root = createRoot(rootElement);
+    console.log("React Root created. Calling .render()...");
+    root.render(<app/>);
+    console.log("The .render() call has been sent to React.");
+    
+    // Debug: Check if root has children after a delay
+    setTimeout(() => {
+      console.log("Post-render check - children count:", rootElement.children.length);
+      if (rootElement.children.length === 0) {
+        console.warn("WARNING: Root is still empty after 2 seconds.");
+        const warning = document.createElement('div');
+        warning.className = "p-10 bg-black text-yellow-400 font-bold text-2xl fixed inset-0 flex items-center justify-center z-[99998]";
+        warning.innerText = "WARNING: React called render but DOM is empty. Check console for errors.";
+        document.body.appendChild(warning);
+      }
+    }, 2000);
+    
+  } catch (err) {
+    console.error("FAILED TO CREATE ROOT OR RENDER:", err);
+    const failDiv = document.createElement('div');
+    failDiv.className = "bg-white text-red-600 p-10 text-2xl font-bold fixed inset-0 flex items-center justify-center z-[99999]";
+    failDiv.innerText = `MOUNT FAILED: ${err}`;
+    document.body.appendChild(failDiv);
   }
-  @keyframes bounceX {
-    0%, 100% { transform: translateX(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-    50% { transform: translateX(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
-  }
-  @keyframes bounceXReverse {
-    0%, 100% { transform: translateX(25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
-    50% { transform: translateX(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
-  }
-
-  --animate-fade-in-up: fadeInUp 0.5s ease-out forwards;
-  --animate-bounce-x: bounceX 1s infinite;
-  --animate-bounce-x-reverse: bounceXReverse 1s infinite;
-}
-
-@layer base {
-  body {
-    @apply bg-brand-dark text-slate-200 antialiased selection:bg-brand-accent selection:text-brand-dark;
-  }
+} else {
+  console.error("CRITICAL: #root element not found in the DOM!");
+  document.body.innerHTML = "<h1 class="text-red-600 p-10 text-2xl font-bold">CRITICAL: #root element not found!</h1>";
 }

@@ -7,7 +7,6 @@ interface NewsletterPageProps {
 }
 
 export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
-  const hiddenStyle = { display: 'none' };
 
   useEffect(() => {
     // 1. Define the success callback globally so the external script can call it
@@ -79,8 +78,7 @@ export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
                              <span>Subscribe</span>
                         </button>
                         
-                        {/* Transmitting Button */}
-                        <button disabled="" style="{hiddenStyle}" type="button" classname="loading w-full flex items-center justify-center gap-2 bg-brand-accent/50 text-brand-dark font-bold py-4 rounded-xl font-mono uppercase tracking-widest cursor-wait">
+                        <button disabled="" style="{{" display:="" 'none'="" }}="" type="button" classname="loading w-full flex items-center justify-center gap-2 bg-brand-accent/50 text-brand-dark font-bold py-4 rounded-xl font-mono uppercase tracking-widest cursor-wait">
                             <div classname="ml-form-embedSubmitLoad"></div>
                             <span>Transmitting...</span>
                         </button>
@@ -92,7 +90,7 @@ export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
             </div>
 
             {/* Success Message - Toggled by MailerLite Script via Global Callback */}
-            <div classname="ml-form-successBody row-success" style="{hiddenStyle}">
+            <div classname="ml-form-successBody row-success" style="{{" display:="" 'none'="" }}="">
                 <div classname="ml-form-successContent flex flex-col items-center text-center animate-fade-in-up">
                     <div classname="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-6">
                         <checkcircle size="{32}"/>

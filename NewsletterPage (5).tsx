@@ -10,13 +10,11 @@ interface ProfileHeaderProps {
 }
 
 export const ProfileHeader: React.FC<profileheaderprops> = ({ location, onAboutClick, onWorkClick, onHandcamClick }) => {
-  const bannerStyle = { objectPosition: 'center 40%' };
-
   return (
     <div classname="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}
       <div classname="w-full h-80 md:h-96 relative overflow-hidden bg-slate-900">
-        <img src="https://lh3.googleusercontent.com/d/1j8RymY3MoVpu5EUmbg6TkanFbP33_bN2" alt="Terminal Nomad Banner" classname="w-full h-full object-cover object-center" style="{bannerStyle}" referrerpolicy="no-referrer" onerror="{(e)" ==""> {
+        <img src="https://lh3.googleusercontent.com/d/1j8RymY3MoVpu5EUmbg6TkanFbP33_bN2" alt="Terminal Nomad Banner" classname="w-full h-full object-cover object-center" style="{{" objectposition:="" 'center="" 40%'="" }}="" referrerpolicy="no-referrer" onerror="{(e)" ==""> {
             console.warn("Google Drive image failed to load, switching to fallback.");
             e.currentTarget.src = "https://images.unsplash.com/photo-1512453979798-5ea904ac6666?q=80&w=1600&auto=format&fit=crop";
           }}
