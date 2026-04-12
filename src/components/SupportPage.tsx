@@ -9,7 +9,7 @@ interface SupportPageProps {
   links: LinkItem[];
 }
 
-export const SupportPage: React.FC<supportpageprops> = ({ onBack, links }) => {
+export const SupportPage = ({ onBack, links }: SupportPageProps) => {
   const supportLinks = links.filter(link => link.category === LinkCategory.SUPPORT);
 
   return (

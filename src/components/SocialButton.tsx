@@ -11,14 +11,14 @@ interface SocialButtonProps {
   primary?: boolean;
 }
 
-export const SocialButton: React.FC<socialbuttonprops> = ({ 
+export const SocialButton = ({ 
   item, 
   icon: IconProp, 
   label, 
   href, 
   onClick, 
   primary 
-}) => {
+}: any) => {
   const title = item?.title || label;
   const url = item?.url || href || '#';
   const Icon = item?.icon || IconProp;

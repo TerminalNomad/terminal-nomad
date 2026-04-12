@@ -4,7 +4,7 @@ interface LocationMapProps {
   location?: string;
 }
 
-export const LocationMap: React.FC<locationmapprops> = ({ location }) => {
+export const LocationMap = ({ location }: LocationMapProps) => {
   // Using the specific My Maps embed link derived from the user's ID
   const mapSrc = "https://www.google.com/maps/d/embed?mid=1ufYzD_a9DWAElKjermwnXfdllimjFT4";
 

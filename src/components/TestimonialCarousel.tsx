@@ -43,7 +43,7 @@ const TESTIMONIALS = [
   }
 ];
 
-export const TestimonialCarousel: React.FC<testimonialcarouselprops> = ({ onReadMore }) => {
+export const TestimonialCarousel = ({ onReadMore }: TestimonialCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {

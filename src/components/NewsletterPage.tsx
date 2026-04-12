@@ -5,7 +5,7 @@ interface NewsletterPageProps {
   onBack: () => void;
 }
 
-export const NewsletterPage: React.FC<newsletterpageprops> = ({ onBack }) => {
+export const NewsletterPage = ({ onBack }: NewsletterPageProps) => {
 
   useEffect(() => {
     // 1. Define the success callback globally so the external script can call it

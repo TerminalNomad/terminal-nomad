@@ -5,7 +5,7 @@ interface AboutPageProps {
   onBack: () => void;
 }
 
-export const AboutPage: React.FC<aboutpageprops> = ({ onBack }) => {
+export const AboutPage = ({ onBack }: AboutPageProps) => {
   return (
     <div classname="w-full max-w-4xl mx-auto px-6 py-8 animate-fade-in-up">
       {/* Navigation */}

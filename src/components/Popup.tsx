@@ -6,7 +6,7 @@ interface PopupProps {
   onSupport: () => void;
 }
 
-export const Popup: React.FC<popupprops> = ({ onSubscribe, onSupport }) => {
+export const Popup = ({ onSubscribe, onSupport }: PopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasClosed, setHasClosed] = useState(false);
 

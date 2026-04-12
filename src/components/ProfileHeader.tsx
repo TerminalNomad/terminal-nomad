@@ -8,7 +8,7 @@ interface ProfileHeaderProps {
   onHandcamClick: () => void;
 }
 
-export const ProfileHeader: React.FC<profileheaderprops> = ({ location, onAboutClick, onWorkClick, onHandcamClick }) => {
+export const ProfileHeader = ({ location, onAboutClick, onWorkClick, onHandcamClick }: ProfileHeaderProps) => {
   return (
     <div classname="w-full flex flex-col items-center relative mb-8">
       {/* Banner Image Area */}

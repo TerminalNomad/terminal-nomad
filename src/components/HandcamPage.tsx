@@ -6,7 +6,7 @@ interface HandcamPageProps {
   onBack: () => void;
 }
 
-export const HandcamPage: React.FC<handcampageprops> = ({ onBack }) => {
+export const HandcamPage = ({ onBack }: HandcamPageProps) => {
   return (
     <div classname="w-full max-w-4xl mx-auto px-6 py-8 animate-fade-in-up">
       {/* Navigation */}

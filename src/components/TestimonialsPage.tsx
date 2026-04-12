@@ -43,7 +43,7 @@ const TESTIMONIALS = [
   }
 ];
 
-export const TestimonialsPage: React.FC<testimonialspageprops> = ({ onBack }) => {
+export const TestimonialsPage = ({ onBack }: TestimonialsPageProps) => {
   return (
     <div classname="w-full max-w-5xl mx-auto px-6 py-8 animate-fade-in-up">
       {/* Navigation */}

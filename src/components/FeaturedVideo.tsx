@@ -5,7 +5,7 @@ interface FeaturedVideoProps {
   videoId: string;
 }
 
-export const FeaturedVideo: React.FC<featuredvideoprops> = ({ videoId }) => {
+export const FeaturedVideo = ({ videoId }: FeaturedVideoProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   return (
