@@ -14,7 +14,7 @@ import {
 import { ProfileHeader } from './components/ProfileHeader';
 import { SocialButton } from './components/SocialButton';
 import { FeaturedVideo } from './components/FeaturedVideo';
-import { LocationMap } from './components/LocationMap';
+import { ExpeditionsCard } from './components/ExpeditionsCard';
 import { AboutPage } from './components/AboutPage';
 import { WorkWithMePage } from './components/WorkWithMePage';
 import { TestimonialsPage } from './components/TestimonialsPage';
@@ -270,7 +270,7 @@ export default function App() {
             React.createElement('div', { className: "grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start" },
               React.createElement('div', { className: "md:col-span-7 flex flex-col gap-8 order-1 md:order-1" },
                 React.createElement(FeaturedVideo, { videoId: "mqipTSa6EQU" }),
-                React.createElement(LocationMap, { location: location }),
+                React.createElement(ExpeditionsCard, null),
                 React.createElement(TestimonialCarousel, { onReadMore: handleTestimonialsReadMore })
               ),
               React.createElement('div', { className: "md:col-span-5 flex flex-col gap-8 order-2 md:order-2 md:sticky md:top-8" },
@@ -310,7 +310,10 @@ export default function App() {
     }
   };
 
-  return React.createElement('div', { className: "min-h-screen flex flex-col bg-brand-dark" },
+  return React.createElement('div', { className: "min-h-screen flex flex-col bg-brand-dark relative overflow-hidden" },
+    /* Background Pattern */
+    React.createElement('div', { className: "absolute inset-0 bg-grid-pattern pointer-events-none opacity-50" }),
+    
     React.createElement(Popup, { 
       onSubscribe: handlePopupSubscribe,
       onSupport: handlePopupSupport
