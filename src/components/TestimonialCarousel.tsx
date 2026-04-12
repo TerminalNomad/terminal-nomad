@@ -55,48 +55,52 @@ export const TestimonialCarousel = ({ onReadMore }: TestimonialCarouselProps) =>
 
   const activeTestimonial = TESTIMONIALS[activeIndex];
 
-  return (
-    <div classname="w-full mb-8 animate-fade-in-up" style="{{" animationdelay:="" '0.3s'="" }}="">
-       <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
-        Reviews
-      </h2>
-      <div onclick="{onReadMore}" classname="relative bg-slate-900 border border-white/10 rounded-xl p-8 min-h-[240px] flex flex-col items-center text-center cursor-pointer group hover:border-brand-accent/30 transition-all shadow-xl overflow-hidden">
-        {/* Background Icon */}
-        <div classname="absolute top-0 right-0 p-8 opacity-[0.03] text-white pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700">
-           <messagesquarequote size="{120}/">
-        </div>
+  return React.createElement('div', { className: "w-full mb-8 animate-fade-in-up", style: { animationDelay: '0.3s' } },
+     React.createElement('h2', { className: "text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center" }, "Reviews"),
+     React.createElement('div', { 
+       onClick: onReadMore, 
+       className: "relative bg-slate-900 border border-white/10 rounded-xl p-8 min-h-[240px] flex flex-col items-center text-center cursor-pointer group hover:border-brand-accent/30 transition-all shadow-xl overflow-hidden" 
+     },
+       /* Background Icon */
+       React.createElement('div', { className: "absolute top-0 right-0 p-8 opacity-[0.03] text-white pointer-events-none transform translate-x-4 -translate-y-4 group-hover:scale-110 transition-transform duration-700" },
+          React.createElement(MessageSquareQuote, { size: 120 })
+       ),
 
-         {/* Stars */}
-         <div classname="flex gap-1 mb-6 relative z-10">
-            {[...Array(activeTestimonial.rating)].map((_, i) => (
-            <star key="{i}" size="{16}" classname="text-brand-accent fill-brand-accent"/>
-            ))}
-        </div>
-        
-        {/* Text */}
-        <p key="{activeIndex}" classname="text-slate-300 italic mb-6 font-light text-lg leading-relaxed relative z-10 animate-fade-in-up">
-            "{activeTestimonial.text}"
-        </p>
+        /* Stars */
+        React.createElement('div', { className: "flex gap-1 mb-6 relative z-10" },
+           [...Array(activeTestimonial.rating)].map((_, i) => 
+             React.createElement(Star, { key: i, size: 16, className: "text-brand-accent fill-brand-accent" })
+           )
+       ),
+       
+       /* Text */
+       React.createElement('p', { 
+         key: activeIndex, 
+         className: "text-slate-300 italic mb-6 font-light text-lg leading-relaxed relative z-10 animate-fade-in-up" 
+       }, `"${activeTestimonial.text}"`),
 
-        {/* Author */}
-        <div classname="mt-auto relative z-10">
-            <div classname="text-white font-bold font-mono text-sm">{activeTestimonial.name}</div>
-            <div classname="text-brand-accent/80 text-xs font-mono uppercase tracking-wider">{activeTestimonial.role}</div>
-        </div>
+       /* Author */
+       React.createElement('div', { className: "mt-auto relative z-10" },
+           React.createElement('div', { className: "text-white font-bold font-mono text-sm" }, activeTestimonial.name),
+           React.createElement('div', { className: "text-brand-accent/80 text-xs font-mono uppercase tracking-wider" }, activeTestimonial.role)
+       ),
 
-        {/* Indicators */}
-         <div classname="absolute bottom-4 flex gap-2">
-            {TESTIMONIALS.map((_, idx) => (
-                <div key="{idx}" classname="{`h-1" rounded-full="" transition-all="" duration-300="" ${idx="==" activeindex="" ?="" 'w-6="" bg-brand-accent'="" :="" 'w-1.5="" bg-slate-700'}`}=""/>
-            ))}
-         </div>
-      </div>
-      
-      <div classname="text-center mt-2">
-         <button onclick="{onReadMore}" classname="text-xs text-slate-500 hover:text-brand-accent transition-colors font-mono uppercase tracking-widest">
-            Read all logs
-         </button>
-      </div>
-    </div>
+       /* Indicators */
+        React.createElement('div', { className: "absolute bottom-4 flex gap-2" },
+           TESTIMONIALS.map((_, idx) => 
+               React.createElement('div', { 
+                 key: idx, 
+                 className: `h-1 rounded-full transition-all duration-300 ${idx === activeIndex ? 'w-6 bg-brand-accent' : 'w-1.5 bg-slate-700'}` 
+               })
+           )
+        )
+     ),
+     
+     React.createElement('div', { className: "text-center mt-2" },
+        React.createElement('button', { 
+          onClick: onReadMore, 
+          className: "text-xs text-slate-500 hover:text-brand-accent transition-colors font-mono uppercase tracking-widest" 
+        }, "Read all logs")
+     )
   );
 };
