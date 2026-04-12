@@ -40,7 +40,7 @@ export const AboutPage = ({ onBack }: AboutPageProps) => {
           React.createElement('strong', { className: "text-white" }, "I don't just exist; I descend.")
         ),
         React.createElement('p', null,
-          "My name is Zackery, but most know me as NomadicZack. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth, I've dedicated my life to the art of human flight."
+          "My name is Zack. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth, I've dedicated my life to the art of human flight."
         ),
         React.createElement('p', null,
           "What started as a curiosity quickly turned into an obsession, and then a lifestyle. Now, I travel the globe chasing horizons, teaching others how to fly, and capturing the raw, unfiltered beauty of the world from a perspective few ever get to see."
