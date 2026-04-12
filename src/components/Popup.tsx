@@ -26,6 +26,16 @@ export const Popup = ({ onSubscribe, onSupport }: PopupProps) => {
     setHasClosed(true);
   };
 
+  const handleSubscribeClick = () => {
+    onSubscribe();
+    handleClose();
+  };
+
+  const handleSupportClick = () => {
+    onSupport();
+    handleClose();
+  };
+
   if (!isVisible) return null;
 
   return (
@@ -50,16 +60,12 @@ export const Popup = ({ onSubscribe, onSupport }: PopupProps) => {
         </p>
 
         <div classname="flex flex-col gap-3">
-          <button onclick="{()" ==""> { onSubscribe(); handleClose(); }}
-            className="group flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono uppercase tracking-widest transition-all hover:scale-[1.02]"
-          >
+          <button onclick="{handleSubscribeClick}" classname="group flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono uppercase tracking-widest transition-all hover:scale-[1.02]">
             <mail size="{18}/">
             <span>Subscribe to Newsletter</span>
           </button>
 
-          <button onclick="{()" ==""> { onSupport(); handleClose(); }}
-            className="group flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold font-mono uppercase tracking-widest transition-all hover:scale-[1.02]"
-          >
+          <button onclick="{handleSupportClick}" classname="group flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold font-mono uppercase tracking-widest transition-all hover:scale-[1.02]">
             <heart size="{18}" classname="text-red-500 group-hover:scale-110 transition-transform"/>
             <span>Support the Journey</span>
           </button>

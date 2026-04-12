@@ -8,6 +8,8 @@ interface FeaturedVideoProps {
 export const FeaturedVideo = ({ videoId }: FeaturedVideoProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const handlePlayClick = () => setIsPlaying(true);
+
   return (
     <div classname="w-full mb-8 animate-fade-in-up">
       <h2 classname="text-xs font-mono uppercase tracking-[0.2em] text-slate-500 mb-4 text-center">
@@ -15,8 +17,7 @@ export const FeaturedVideo = ({ videoId }: FeaturedVideoProps) => {
       </h2>
       <div classname="flex flex-col gap-3">
         {/* Video Wrapper */}
-        <div classname="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl group cursor-pointer" onclick="{()" ==""> setIsPlaying(true)}
-        >
+        <div classname="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-2xl group cursor-pointer" onclick="{handlePlayClick}">
           {!isPlaying ? (
             /* Thumbnail & Play Button Facade */
             <>
