@@ -1,0 +1,8 @@
+# Netlify configuration
+# This tells Netlify to serve index.html for all routes
+# so React Router can handle the URLs correctly
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
