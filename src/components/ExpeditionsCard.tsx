@@ -8,16 +8,22 @@ interface Expedition {
 }
 
 const expeditions: Expedition[] = [
-  { location: 'Los Angeles',    date: '4/13 – 4/17', status: 'Current'  },
-  { location: 'Kentucky Derby', date: '5/1 – 5/3',   status: 'Upcoming' },
-  { location: 'Indy 500',       date: '5/21 – 5/25', status: 'Upcoming' },
-  { location: 'Portland',       date: '6/1 – 6/5',   status: 'Upcoming' },
+  { location: 'Kentucky Derby',              date: 'May 1 – 3',    status: 'Past'     },
+  { location: 'Indy 500',                    date: 'May 21 – 25',  status: 'Upcoming' },
+  { location: 'Portland',                    date: 'Jun 1 – 5',    status: 'Upcoming' },
+  { location: 'Washington, DC',             date: 'Jul 2 – 5',    status: 'Upcoming' },
 ];
 
 const statusColor: Record<Expedition['status'], string> = {
   Current:  'bg-green-500',
   Upcoming: 'bg-brand-accent',
   Past:     'bg-slate-600',
+};
+
+const statusLabel: Record<Expedition['status'], string> = {
+  Current:  'Now',
+  Upcoming: '',
+  Past:     'Done',
 };
 
 export const ExpeditionsCard = () => (
@@ -53,6 +59,9 @@ export const ExpeditionsCard = () => (
             <div>
               <div className="text-white font-bold font-mono text-sm group-hover:text-brand-accent transition-colors">
                 {exp.location}
+                {exp.location === 'Washington, DC' && (
+                  <span className="ml-2 text-[10px] font-mono text-yellow-400/80 normal-case tracking-normal">🎆 US 250th</span>
+                )}
               </div>
               <div className="flex items-center gap-1 text-slate-500 text-xs mt-0.5">
                 <Calendar size={11} aria-hidden="true" />
@@ -61,9 +70,13 @@ export const ExpeditionsCard = () => (
             </div>
           </div>
           <div className="flex items-center gap-1.5">
-            {exp.status === 'Current' && (
-              <span className="text-[10px] font-mono uppercase tracking-wider text-green-400 bg-green-500/10 px-2 py-0.5 rounded-full">
-                Now
+            {statusLabel[exp.status] && (
+              <span className={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                exp.status === 'Current'
+                  ? 'text-green-400 bg-green-500/10'
+                  : 'text-slate-500 bg-slate-700/30'
+              }`}>
+                {statusLabel[exp.status]}
               </span>
             )}
             <MapPin
