@@ -1,63 +1,50 @@
 import React from 'react';
+import { ExternalLink } from 'lucide-react';
 import { LinkItem } from '../types';
-import { ExternalLink, LucideIcon } from 'lucide-react';
 
 interface SocialButtonProps {
-  item?: LinkItem;
-  icon?: LucideIcon;
-  label?: string;
-  href?: string;
-  onClick?: (e: React.MouseEvent) => void;
-  primary?: boolean;
+  item: LinkItem;
 }
 
-export const SocialButton = ({ 
-  item, 
-  icon: IconProp, 
-  label, 
-  href, 
-  onClick, 
-  primary 
-}: any) => {
-  const title = item?.title || label;
-  const url = item?.url || href || '#';
-  const Icon = item?.icon || IconProp;
-  const color = item?.color;
-
+export const SocialButton = ({ item }: SocialButtonProps) => {
+  const { title, url, icon: Icon, color } = item;
   const isExternal = url.startsWith('http');
 
-  return React.createElement('a', {
-    href: url,
-    onClick: onClick,
-    target: isExternal ? "_blank" : undefined,
-    rel: isExternal ? "noopener noreferrer" : undefined,
-    className: `
-      group relative flex items-center w-full p-4 mb-3 
-      transition-all duration-300 ease-out 
-      border rounded-xl backdrop-blur-sm overflow-hidden active:scale-95
-      ${primary 
-        ? 'bg-brand-accent/10 border-brand-accent/30 hover:bg-brand-accent/20 hover:border-brand-accent/50' 
-        : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
-      }
-    `,
-    style: color ? { borderColor: `${color}50` } : {}
-  },
-    /* Background Hover Effect */
-    React.createElement('div', { className: "absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%]" }),
+  return (
+    <a
+      href={url}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      className="group relative flex items-center w-full p-3.5 transition-all duration-300 ease-out border rounded-xl overflow-hidden active:scale-95 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+      style={color ? { borderColor: `${color}40` } : {}}
+      aria-label={`${title} — opens in new tab`}
+    >
+      {/* Shimmer effect on hover */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+        style={{
+          background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)',
+          animation: 'shimmer 1.5s ease-in-out',
+        }}
+      />
 
-    React.createElement('div', { className: `
-      flex items-center justify-center w-10 h-10 rounded-lg 
-      bg-black/30 text-white mr-4 shadow-inner 
-      group-hover:text-brand-accent transition-colors
-    ` },
-      Icon && React.createElement(Icon, { size: 20 })
-    ),
+      {/* Icon container */}
+      <div
+        className="flex items-center justify-center w-9 h-9 rounded-lg bg-black/30 text-white mr-3 shadow-inner flex-shrink-0 transition-colors duration-300"
+        style={color ? { color } : {}}
+      >
+        <Icon size={18} aria-hidden="true" />
+      </div>
 
-    React.createElement('span', { className: "flex-1 text-lg font-semibold tracking-wide text-slate-100 group-hover:text-white" }, title),
+      <span className="flex-1 text-base font-semibold tracking-wide text-slate-100 group-hover:text-white transition-colors">
+        {title}
+      </span>
 
-    isExternal && React.createElement(ExternalLink, { 
-      size: 16, 
-      className: "text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0" 
-    })
+      <ExternalLink
+        size={14}
+        className="text-slate-600 opacity-0 group-hover:opacity-100 transition-all translate-x-1 group-hover:translate-x-0 flex-shrink-0"
+        aria-hidden="true"
+      />
+    </a>
   );
 };

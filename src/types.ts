@@ -11,7 +11,7 @@ export interface LinkItem {
   id: string;
   title: string;
   url: string;
-  icon: LucideIcon;
+  icon: LucideIcon | React.FC<any>;
   category: LinkCategoryType;
-  color?: string; // Optional brand color for hover effects
+  color?: string;
 }

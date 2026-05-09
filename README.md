@@ -1,20 +1,52 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NomadicZack v2.0
 
-# Run and deploy your AI Studio app
+Rebuilt from scratch with proper JSX, full SEO, Open Graph, Google Analytics, and improved UX.
 
-This contains everything you need to run your app locally.
+## What's new in v2.0
 
-View your app in AI Studio: https://ai.studio/apps/32d84308-f748-47f1-871a-3e94c4a43b18
+- ✅ Full JSX syntax (no more `React.createElement`)
+- ✅ SEO meta tags (title, description, keywords)
+- ✅ Open Graph tags (rich previews on Instagram, Discord, iMessage, etc.)
+- ✅ Twitter Card support
+- ✅ Google Analytics placeholder (replace `G-XXXXXXXXXX` with your real ID)
+- ✅ Snapchat link added back to social section
+- ✅ Popup uses `localStorage` — won't pester the same visitor twice
+- ✅ Testimonial carousel with prev/next buttons + pause on manual scroll
+- ✅ Improved profile header with better avatar fallback
+- ✅ Cleaned up repo structure — no duplicate files
+- ✅ Better accessibility (aria labels, semantic HTML, keyboard nav)
+- ✅ Ambient glow background effect
+- ✅ Auto-updating copyright year in footer
 
-## Run Locally
+## Setup
 
-**Prerequisites:**  Node.js
+```bash
+npm install
+npm run dev
+```
 
+## Deploy to Netlify
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Push to your GitHub repo. Netlify will auto-deploy on every push.
+
+Build command: `npm run build`  
+Publish directory: `dist`
+
+## Google Analytics
+
+1. Go to https://analytics.google.com and create a free account for nomadiczack.com
+2. Get your Measurement ID (looks like `G-XXXXXXXXXX`)
+3. Open `index.html` and replace `G-XXXXXXXXXX` with your real ID (appears twice)
+4. Push to GitHub — done!
+
+## Add a real profile photo
+
+1. Upload your photo to Google Drive and get a shareable link
+2. Open `src/components/ProfileHeader.tsx`
+3. Replace the `src` URL in the avatar `<img>` tag with your photo URL
+4. Push and redeploy
+
+## Location updates
+
+Edit your current location in the Google Sheet linked in `src/App.tsx`.
+The site will pick it up automatically on the next page load.
