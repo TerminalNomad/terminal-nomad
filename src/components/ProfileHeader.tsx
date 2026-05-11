@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, User, Briefcase, Camera, ArrowRight, ArrowLeft } from 'lucide-react';
+import { MapPin, User, Briefcase, Camera, ArrowRight } from 'lucide-react';
 
 interface ProfileHeaderProps {
   location: string;
@@ -51,23 +51,20 @@ export const ProfileHeader = ({ location }: ProfileHeaderProps) => {
           Chasing horizons &amp; terminal velocity around the globe.
         </p>
 
-        {/* Handcam CTA */}
-        <div className="mb-5 w-full max-w-xs">
+        {/* Skydive Media CTA */}
+        <div className="mb-5 w-full max-w-sm">
           <Link
-            to="/handcam"
-            className="w-full group flex flex-col items-center justify-center gap-1 px-6 py-4 rounded-2xl transition-all font-black font-mono text-sm uppercase tracking-tight text-brand-dark shadow-xl border-2 border-white/20 animate-pulse-glow hover:animate-none"
+            to="/media"
+            className="w-full group flex flex-col items-center justify-center gap-1.5 px-6 py-4 rounded-2xl transition-all font-black font-mono text-sm uppercase tracking-tight text-brand-dark shadow-xl border-2 border-white/20 animate-pulse-glow hover:animate-none"
             style={{ background: 'linear-gradient(135deg, #06b6d4, #3b82f6)' }}
-            aria-label="Get your handcam video"
+            aria-label="Preview and get your skydive media"
           >
             <div className="flex items-center gap-3">
-              <ArrowRight size={18} className="animate-bounce-x" aria-hidden="true" />
-              <div className="flex items-center gap-2">
-                <Camera size={20} className="group-hover:rotate-12 transition-transform" aria-hidden="true" />
-                <span>Jumped with me?</span>
-              </div>
-              <ArrowLeft size={18} className="animate-bounce-x-reverse" aria-hidden="true" />
+              <Camera size={20} className="group-hover:rotate-12 transition-transform flex-shrink-0" aria-hidden="true" />
+              <span className="text-center leading-tight">Preview &amp; Get Your Skydive Media Here!</span>
+              <ArrowRight size={18} className="flex-shrink-0 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
             </div>
-            <span className="text-[10px] opacity-80 font-bold">Get your handcam video here</span>
+            <span className="text-[10px] opacity-80 font-bold tracking-widest">Videos · Photos · Handcam</span>
           </Link>
         </div>
 

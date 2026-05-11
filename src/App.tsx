@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import {
   Instagram, Facebook, Youtube, Wallet, DollarSign,
-  Zap, Square, Mail, MessageSquareQuote,
+  Zap, Square, Mail, MessageSquareQuote, Video,
 } from 'lucide-react';
 
 import { Layout }              from './components/Layout';
@@ -16,7 +16,7 @@ import { WorkWithMePage }      from './components/WorkWithMePage';
 import { TestimonialsPage }    from './components/TestimonialsPage';
 import { NewsletterPage }      from './components/NewsletterPage';
 import { SupportPage }         from './components/SupportPage';
-import { HandcamPage }         from './components/HandcamPage';
+import { MediaPage }           from './components/MediaPage';
 import { LinkItem, LinkCategory } from './types';
 
 // ─── Custom icons ─────────────────────────────────────────────────────────────
@@ -112,6 +112,10 @@ const HomePage = () => {
                 <MessageSquareQuote size={15} aria-hidden="true" />
                 Testimonials
               </Link>
+              <Link to="/media" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono py-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                <Video size={15} aria-hidden="true" />
+                Skydive Media
+              </Link>
               <a href="mailto:zack@terminalnomad.com" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono py-2 hover:bg-white/5 rounded-lg w-full justify-center">
                 <Mail size={15} aria-hidden="true" />
                 Business Inquiries
@@ -137,7 +141,7 @@ export default function App() {
         <Route path="/testimonials" element={<TestimonialsPage />} />
         <Route path="/newsletter"   element={<NewsletterPage />} />
         <Route path="/support"      element={<SupportPage links={LINKS} />} />
-        <Route path="/handcam"      element={<HandcamPage />} />
+        <Route path="/media"         element={<MediaPage />} />
         {/* Catch-all — redirect unknown URLs to home */}
         <Route path="*"             element={<HomePage />} />
       </Route>
