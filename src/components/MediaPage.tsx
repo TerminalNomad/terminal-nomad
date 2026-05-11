@@ -7,8 +7,8 @@ import {
   Wind, Loader2, CreditCard,
 } from 'lucide-react';
 
-const API_KEY      = 'AIzaSyBHNVsAlSSW1q2GZCFMoSUZ2EMz5CCv7gc';
-const FOLDER_ID    = '1BdKYl0yiop1UWe7LM15JfrJ07xrpb1nQ';
+const API_KEY      = import.meta.env.VITE_GOOGLE_API_KEY as string;
+const FOLDER_ID    = import.meta.env.VITE_GOOGLE_FOLDER_ID as string;
 const CHECKOUT_URL = 'https://square.link/u/k4qQAZoN';
 
 interface DriveFile {
