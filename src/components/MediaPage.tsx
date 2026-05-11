@@ -168,7 +168,7 @@ const PassengerCard = ({
   passenger: Passenger;
   onClick: () => void;
 }) => {
-  const cover = passenger.videos[0] ?? passenger.photos[0];
+  const cover = passenger.photos[6] ?? passenger.photos[0] ?? passenger.videos[0];
   const hasVideo = passenger.videos.length > 0;
 
   return (
@@ -178,18 +178,12 @@ const PassengerCard = ({
     >
       <div className="aspect-video bg-slate-900 relative overflow-hidden">
         {cover ? (
-          cover.mimeType.startsWith('video') ? (
-            <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-              <Play size={36} className="text-brand-accent opacity-70" />
-            </div>
-          ) : (
-            <img
-              src={thumbUrl(cover)}
-              alt={passenger.name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-            />
-          )
+          <img
+            src={thumbUrl(cover)}
+            alt={passenger.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
             <Wind size={36} className="text-slate-700" />
@@ -377,20 +371,7 @@ export const MediaPage = () => {
 
       </div>
 
-      {/* ── FAQ row ───────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-14">
-        {[
-          { icon: Clock,      title: 'When will I get it?', body: 'Usually same day, within 24 hours of your jump.' },
-          { icon: Package,    title: "What's included?",    body: 'All raw, uncompressed files. No watermarks, no compression.' },
-          { icon: HelpCircle, title: 'Need help?',          body: 'Email zack@nomadiczack.com and he\'ll sort you out.' },
-        ].map(({ icon: Icon, title, body }) => (
-          <div key={title} className="glass rounded-2xl p-5">
-            <Icon size={18} className="text-brand-accent mb-3" aria-hidden="true" />
-            <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">{title}</h5>
-            <p className="text-slate-400 text-sm leading-relaxed">{body}</p>
-          </div>
-        ))}
-      </div>
+
 
       {/* ── Divider ───────────────────────────────────────────────────────── */}
       <div className="flex items-center gap-4 mb-10">
@@ -487,6 +468,29 @@ export const MediaPage = () => {
           </a>
         </div>
       )}
+
+      {/* ── FAQ row ───────────────────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+        <div className="glass rounded-2xl p-5">
+          <Clock size={18} className="text-brand-accent mb-3" aria-hidden="true" />
+          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">When will I get it?</h5>
+          <p className="text-slate-400 text-sm leading-relaxed">Usually same day, within 24 hours of your jump.</p>
+        </div>
+        <div className="glass rounded-2xl p-5">
+          <Package size={18} className="text-brand-accent mb-3" aria-hidden="true" />
+          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">What's included?</h5>
+          <ul className="text-slate-400 text-sm leading-relaxed space-y-1">
+            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Edited video</li>
+            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Raw videos</li>
+            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Photos</li>
+          </ul>
+        </div>
+        <div className="glass rounded-2xl p-5">
+          <HelpCircle size={18} className="text-brand-accent mb-3" aria-hidden="true" />
+          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">Need help?</h5>
+          <p className="text-slate-400 text-sm leading-relaxed">Email zack@nomadiczack.com and he'll sort you out.</p>
+        </div>
+      </div>
 
       {/* Lightbox */}
       {selected && (
