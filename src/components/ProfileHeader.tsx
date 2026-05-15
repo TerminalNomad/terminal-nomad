@@ -38,7 +38,7 @@ export const ProfileHeader = ({ location }: ProfileHeaderProps) => {
             src={PROFILE_PHOTO}
             alt="Zack — NomadicZack skydiving instructor"
             className="w-full h-full object-cover"
-            style={{ objectPosition: 'center 15%' }}
+            style={{ objectPosition: '25% 15%' }}
           />
         </div>
 
