@@ -220,7 +220,7 @@ const PassengerCard = ({ passenger, onOpen }: { passenger: Passenger; onOpen: (s
           rel="noopener noreferrer"
           className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-dark border border-brand-accent/30 hover:border-brand-accent font-mono text-xs font-bold uppercase tracking-wider transition-all"
         >
-          <ShoppingCart size={10} /> Buy
+          <ShoppingCart size={10} /> Buy · $50
         </a>
       </div>
     </div>
@@ -351,8 +351,11 @@ export const MediaPage = () => {
               <h3 className="font-mono font-bold text-sm uppercase tracking-wider">Jump Gallery</h3>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Every jumper gets a folder of blurred preview photos plus a watermarked teaser video.
-              Browse below and find yours.
+              The previews below are <span className="text-white font-semibold">blurred</span> videos and a few <span className="text-white font-semibold">blurred</span> photos — just a taste of your jump.
+              Purchase the full package to get a much more thorough collection of clear photos and footage.
+            </p>
+            <p className="text-slate-500 text-xs leading-relaxed mt-2 italic">
+              Previews remain available for up to 2 months before being removed.
             </p>
           </div>
           <div className="bg-brand-card border border-brand-accent/30 rounded-2xl p-5">
@@ -361,16 +364,21 @@ export const MediaPage = () => {
               <h3 className="font-mono font-bold text-sm uppercase tracking-wider text-brand-accent">Get The Full Video</h3>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-3">
-              Pay through Square and I'll send the clear, watermark-free version directly to your inbox.
+              Pay through Square and you'll receive an <span className="text-white font-semibold">edited highlight video</span>, all <span className="text-white font-semibold">raw videos</span>, and all <span className="text-white font-semibold">photos</span> — delivered straight to your inbox.
             </p>
-            <a
-              href={CHECKOUT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-white text-brand-dark font-mono text-xs font-bold uppercase tracking-wider transition"
-            >
-              <ShoppingCart size={14} /> Buy Now <ExternalLink size={12} />
-            </a>
+            <div className="flex items-center gap-3 flex-wrap">
+              <a
+                href={CHECKOUT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-white text-brand-dark font-mono text-xs font-bold uppercase tracking-wider transition"
+              >
+                <ShoppingCart size={14} /> Buy Now <ExternalLink size={12} />
+              </a>
+              <span className="font-mono text-lg font-black text-white">
+                Only <span className="text-brand-accent">$50</span>
+              </span>
+            </div>
           </div>
         </div>
 
