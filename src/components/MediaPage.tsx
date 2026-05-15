@@ -2,13 +2,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   ArrowLeft, Camera, ExternalLink, Video, Clock,
-  Package, HelpCircle, Search, Play, Image,
+  Package, HelpCircle, Search, Play, Image as ImageIcon,
   X, ChevronLeft, ChevronRight, ShoppingCart,
   Wind, Loader2, CreditCard,
 } from 'lucide-react';
 
-const API_KEY      = import.meta.env.VITE_GOOGLE_API_KEY as string;
-const FOLDER_ID    = import.meta.env.VITE_GOOGLE_FOLDER_ID as string;
+const API_KEY      = import.meta.env.VITE_GOOGLE_API_KEY      ?? '';
+const FOLDER_ID    = import.meta.env.VITE_GOOGLE_FOLDER_ID    ?? '';
 const CHECKOUT_URL = 'https://square.link/u/k4qQAZoN';
 
 interface DriveFile {
@@ -24,7 +24,9 @@ interface Passenger {
   videos: DriveFile[];
 }
 
-// ── helpers ──────────────────────────────────────────────────────────────────
+// ── helpers ─────────────────────────────────────────────────────────────────
+
+const FOLDER_MIME = 'application/vnd.google-apps.folder';
 
 const thumbUrl = (f: DriveFile) =>
   f.thumbnailLink?.replace('=s220', '=s400') ??
@@ -33,9 +35,39 @@ const thumbUrl = (f: DriveFile) =>
 const fullUrl = (f: DriveFile) =>
   f.mimeType.startsWith('video')
     ? `https://drive.google.com/file/d/${f.id}/preview`
-    : `https://drive.google.com/thumbnail?id=${f.id}&sz=w1200`;
+    : `https://drive.google.com/thumbnail?id=${f.id}&sz=w1920`;
 
-// ── Lightbox ─────────────────────────────────────────────────────────────────
+// Convert "Zack_Krietenstein" or "ZACK KRIETENSTEIN" → "Zack Krietenstein"
+const prettyName = (raw: string) =>
+  raw
+    .replace(/_/g, ' ')
+    .toLowerCase()
+    .split(' ')
+    .filter(Boolean)
+    .map((w) => w[0].toUpperCase() + w.slice(1))
+    .join(' ');
+
+const listFolder = async (folderId: string): Promise<DriveFile[]> => {
+  let all: DriveFile[] = [];
+  let pageToken = '';
+  do {
+    const params = new URLSearchParams({
+      q: `'${folderId}' in parents and trashed=false`,
+      key: API_KEY,
+      fields: 'nextPageToken,files(id,name,mimeType,thumbnailLink)',
+      pageSize: '1000',
+      ...(pageToken ? { pageToken } : {}),
+    });
+    const res  = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
+    const data = await res.json();
+    if (data.error) throw new Error(data.error.message);
+    all       = [...all, ...(data.files ?? [])];
+    pageToken = data.nextPageToken ?? '';
+  } while (pageToken);
+  return all;
+};
+
+// ── Lightbox ────────────────────────────────────────────────────────────────
 
 const Lightbox = ({
   passenger,
@@ -46,234 +78,217 @@ const Lightbox = ({
   startIndex: number;
   onClose: () => void;
 }) => {
-  const all = [...passenger.videos, ...passenger.photos];
-  const [idx, setIdx] = useState(startIndex);
-  const current = all[idx];
-  const isVideo = current.mimeType.startsWith('video');
+  const media = [...passenger.videos, ...passenger.photos];
+  const [index, setIndex] = useState(startIndex);
+  const current = media[index];
 
-  const prev = () => setIdx((i) => (i - 1 + all.length) % all.length);
-  const next = () => setIdx((i) => (i + 1) % all.length);
+  const prev = useCallback(() => setIndex((i) => (i - 1 + media.length) % media.length), [media.length]);
+  const next = useCallback(() => setIndex((i) => (i + 1) % media.length), [media.length]);
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
+    const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
       if (e.key === 'ArrowLeft') prev();
       if (e.key === 'ArrowRight') next();
     };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose, prev, next]);
+
+  if (!current) return null;
+  const isVideo = current.mimeType.startsWith('video');
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-sm animate-fade-in"
-      role="dialog"
-      aria-modal="true"
-    >
-      {/* Top bar */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 flex-shrink-0">
+    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-white/10">
         <div>
-          <p className="text-white font-bold font-mono">{passenger.name}</p>
-          <p className="text-slate-500 text-xs font-mono">
-            {idx + 1} / {all.length} · {isVideo ? 'Video' : 'Photo'}
-          </p>
+          <h3 className="text-white font-mono font-bold uppercase tracking-wider">{prettyName(passenger.name)}</h3>
+          <p className="text-slate-400 text-sm">{index + 1} of {media.length}</p>
         </div>
-        <div className="flex items-center gap-3">
-          <a
-            href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono text-xs uppercase tracking-wider transition-all"
-          >
-            <ShoppingCart size={13} />
-            Buy Full Video
-          </a>
-          <button
-            onClick={onClose}
-            className="w-9 h-9 flex items-center justify-center rounded-full glass hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
-            aria-label="Close"
-          >
-            <X size={18} />
-          </button>
-        </div>
+        <button onClick={onClose} className="text-white hover:text-brand-accent p-2 rounded-full hover:bg-white/10 transition" aria-label="Close">
+          <X size={24} />
+        </button>
       </div>
 
-      {/* Media */}
-      <div className="flex-1 flex items-center justify-center relative overflow-hidden px-4 py-4">
+      {/* Main viewer */}
+      <div className="flex-1 flex items-center justify-center relative overflow-hidden">
+        {media.length > 1 && (
+          <>
+            <button onClick={prev} className="absolute left-4 z-10 text-white hover:text-brand-accent p-3 rounded-full bg-black/40 hover:bg-black/70 transition" aria-label="Previous">
+              <ChevronLeft size={32} />
+            </button>
+            <button onClick={next} className="absolute right-4 z-10 text-white hover:text-brand-accent p-3 rounded-full bg-black/40 hover:bg-black/70 transition" aria-label="Next">
+              <ChevronRight size={32} />
+            </button>
+          </>
+        )}
+
         {isVideo ? (
           <iframe
+            key={current.id}
             src={fullUrl(current)}
-            className="w-full max-w-4xl aspect-video rounded-xl border border-white/10 shadow-2xl"
+            className="w-full h-full max-w-5xl max-h-[80vh]"
             allow="autoplay"
             allowFullScreen
             title={current.name}
           />
         ) : (
-          <img
-            src={fullUrl(current)}
-            alt={current.name}
-            className="max-h-full max-w-full object-contain rounded-xl shadow-2xl"
-          />
-        )}
-        {all.length > 1 && (
-          <>
-            <button
-              onClick={prev}
-              className="absolute left-2 md:left-6 w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 text-white transition-colors"
-              aria-label="Previous"
-            >
-              <ChevronLeft size={22} />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-2 md:right-6 w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 text-white transition-colors"
-              aria-label="Next"
-            >
-              <ChevronRight size={22} />
-            </button>
-          </>
+          <img src={fullUrl(current)} alt={current.name} className="max-w-full max-h-[80vh] object-contain" />
         )}
       </div>
 
       {/* Thumbnail strip */}
-      <div className="flex-shrink-0 flex gap-2 overflow-x-auto px-4 py-3 border-t border-white/10">
-        {all.map((f, i) => (
-          <button
-            key={f.id}
-            onClick={() => setIdx(i)}
-            className={`relative flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all ${
-              i === idx ? 'border-brand-accent' : 'border-transparent opacity-50 hover:opacity-80'
-            }`}
-          >
-            {f.mimeType.startsWith('video') ? (
-              <div className="w-full h-full bg-slate-800 flex items-center justify-center">
-                <Play size={14} className="text-brand-accent" />
-              </div>
-            ) : (
-              <img src={thumbUrl(f)} alt="" className="w-full h-full object-cover" />
-            )}
-          </button>
-        ))}
-      </div>
+      {media.length > 1 && (
+        <div className="border-t border-white/10 p-3 overflow-x-auto">
+          <div className="flex gap-2 justify-center">
+            {media.map((m, i) => (
+              <button
+                key={m.id}
+                onClick={() => setIndex(i)}
+                className={`relative shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition ${
+                  i === index ? 'border-brand-accent scale-110' : 'border-transparent opacity-60 hover:opacity-100'
+                }`}
+              >
+                <img src={thumbUrl(m)} alt="" className="w-full h-full object-cover" />
+                {m.mimeType.startsWith('video') && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/40">
+                    <Play size={16} className="text-white" />
+                  </div>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-// ── PassengerCard ─────────────────────────────────────────────────────────────
+// ── Passenger card ──────────────────────────────────────────────────────────
 
-const PassengerCard = ({
-  passenger,
-  onClick,
-}: {
-  passenger: Passenger;
-  onClick: () => void;
-}) => {
-  const cover = passenger.photos[6] ?? passenger.photos[0] ?? passenger.videos[0];
-  const hasVideo = passenger.videos.length > 0;
+const PassengerCard = ({ passenger, onOpen }: { passenger: Passenger; onOpen: (startIndex: number) => void }) => {
+  const cover = passenger.photos[0] ?? passenger.videos[0];
+  if (!cover) return null;
+  const display = prettyName(passenger.name);
 
   return (
-    <div
-      onClick={onClick}
-      className="group relative card overflow-hidden cursor-pointer hover:border-brand-accent/40 transition-all hover:-translate-y-1 hover:shadow-2xl"
-    >
-      <div className="aspect-video bg-slate-900 relative overflow-hidden">
-        {cover ? (
-          <img
-            src={thumbUrl(cover)}
-            alt={passenger.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <Wind size={36} className="text-slate-700" />
+    <div className="group relative bg-brand-card border border-white/10 rounded-2xl overflow-hidden hover:border-brand-accent/50 transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-accent/10">
+      <button onClick={() => onOpen(0)} className="block w-full">
+        <div className="relative aspect-video bg-slate-900 overflow-hidden">
+          <img src={thumbUrl(cover)} alt={display} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+          {/* Glowing play indicator */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-80 group-hover:opacity-100 transition">
+            <div className="w-16 h-16 rounded-full bg-brand-accent/90 flex items-center justify-center shadow-2xl shadow-brand-accent/50 group-hover:scale-110 transition">
+              <Play size={28} className="text-brand-dark ml-1" />
+            </div>
           </div>
-        )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          {/* Badges */}
+          <div className="absolute top-3 left-3 flex gap-1.5">
+            {passenger.videos.length > 0 && (
+              <span className="px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-mono flex items-center gap-1">
+                <Video size={10} /> {passenger.videos.length}
+              </span>
+            )}
+            {passenger.photos.length > 0 && (
+              <span className="px-2 py-1 rounded-full bg-black/60 backdrop-blur-sm text-white text-xs font-mono flex items-center gap-1">
+                <ImageIcon size={10} /> {passenger.photos.length}
+              </span>
+            )}
+          </div>
 
-        {/* Badges */}
-        <div className="absolute top-2 left-2 flex gap-1.5">
-          {hasVideo && (
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-brand-accent text-brand-dark text-[10px] font-mono font-black uppercase">
-              <Play size={8} fill="currentColor" /> Video
-            </span>
-          )}
-          {passenger.photos.length > 0 && (
-            <span className="flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/60 text-white text-[10px] font-mono font-bold uppercase border border-white/20">
-              <Image size={8} /> {passenger.photos.length}
-            </span>
-          )}
-        </div>
-
-        {/* Play overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="w-12 h-12 rounded-full bg-brand-accent/90 flex items-center justify-center shadow-xl">
-            <Play size={20} className="text-brand-dark ml-0.5" fill="currentColor" />
+          {/* Name */}
+          <div className="absolute bottom-0 left-0 right-0 p-3">
+            <h3 className="text-white font-bold text-lg leading-tight font-mono uppercase tracking-wide drop-shadow-lg">{display}</h3>
           </div>
         </div>
-      </div>
+      </button>
 
-      <div className="p-4 flex items-center justify-between">
-        <div>
-          <p className="text-white font-bold font-mono">{passenger.name}</p>
-          <p className="text-slate-500 text-xs mt-0.5">
-            {passenger.videos.length + passenger.photos.length} files
-          </p>
-        </div>
+      <div className="p-3 flex gap-2">
+        <button
+          onClick={() => onOpen(0)}
+          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white font-mono text-xs font-bold uppercase tracking-wider transition"
+        >
+          <Play size={10} /> Preview
+        </button>
         <a
           href={CHECKOUT_URL}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-dark border border-brand-accent/30 hover:border-brand-accent font-mono text-xs font-bold uppercase tracking-wider transition-all"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-brand-dark border border-brand-accent/30 hover:border-brand-accent font-mono text-xs font-bold uppercase tracking-wider transition-all"
         >
-          <ShoppingCart size={10} />
-          Buy
+          <ShoppingCart size={10} /> Buy
         </a>
       </div>
     </div>
   );
 };
 
-// ── Main page ─────────────────────────────────────────────────────────────────
+// ── Main page ───────────────────────────────────────────────────────────────
 
 export const MediaPage = () => {
   const navigate = useNavigate();
-  const [passengers, setPassengers]   = useState<Passenger[]>([]);
-  const [loading, setLoading]         = useState(true);
-  const [error, setError]             = useState('');
-  const [search, setSearch]           = useState('');
-  const [selected, setSelected]       = useState<{ passenger: Passenger; startIndex: number } | null>(null);
+  const [passengers, setPassengers] = useState<Passenger[]>([]);
+  const [loading, setLoading]       = useState(true);
+  const [error, setError]           = useState('');
+  const [search, setSearch]         = useState('');
+  const [selected, setSelected]     = useState<{ passenger: Passenger; startIndex: number } | null>(null);
 
-  const fetchFiles = useCallback(async () => {
+  const fetchPassengers = useCallback(async () => {
     try {
       setLoading(true);
-      let allFiles: DriveFile[] = [];
-      let pageToken = '';
+      setError('');
 
-      do {
-        const params = new URLSearchParams({
-          q: `'${FOLDER_ID}' in parents and trashed=false`,
-          key: API_KEY,
-          fields: 'nextPageToken,files(id,name,mimeType,thumbnailLink)',
-          pageSize: '1000',
-          ...(pageToken ? { pageToken } : {}),
-        });
-        const res  = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
-        const data = await res.json();
-        if (data.error) throw new Error(data.error.message);
-        allFiles  = [...allFiles, ...(data.files ?? [])];
-        pageToken = data.nextPageToken ?? '';
-      } while (pageToken);
+      // 1. List items at the top-level Previews folder
+      const topLevel = await listFolder(FOLDER_ID);
+
+      // 2. Separate subfolders (customer folders) from any loose files (legacy flat structure)
+      const customerFolders = topLevel.filter((f) => f.mimeType === FOLDER_MIME);
+      const looseFiles      = topLevel.filter((f) => f.mimeType !== FOLDER_MIME);
 
       const map: Record<string, Passenger> = {};
-      for (const f of allFiles) {
+
+      // 3. For each customer subfolder, fetch its contents
+      // Run in parallel for speed, but cap concurrency to avoid hitting rate limits
+      const concurrency = 6;
+      let idx = 0;
+      const workers = Array.from({ length: concurrency }, async () => {
+        while (idx < customerFolders.length) {
+          const i = idx++;
+          const folder = customerFolders[i];
+          try {
+            const items = await listFolder(folder.id);
+            const photos: DriveFile[] = [];
+            const videos: DriveFile[] = [];
+            for (const f of items) {
+              if (f.mimeType.startsWith('image')) photos.push(f);
+              else if (f.mimeType.startsWith('video')) videos.push(f);
+              // ignore README.txt and other non-media files
+            }
+            // Skip empty subfolders
+            if (photos.length === 0 && videos.length === 0) continue;
+            map[folder.name] = {
+              name: folder.name,
+              photos: photos.sort((a, b) => a.name.localeCompare(b.name)),
+              videos: videos.sort((a, b) => a.name.localeCompare(b.name)),
+            };
+          } catch (e) {
+            console.warn(`Skipping folder ${folder.name}:`, e);
+          }
+        }
+      });
+      await Promise.all(workers);
+
+      // 4. Fallback: also handle any loose files at top level (old flat layout)
+      for (const f of looseFiles) {
         if (!f.mimeType.startsWith('image') && !f.mimeType.startsWith('video')) continue;
-        const name = f.name.split('_')[0];
-        if (!map[name]) map[name] = { name, photos: [], videos: [] };
-        if (f.mimeType.startsWith('video')) map[name].videos.push(f);
-        else map[name].photos.push(f);
+        const key = f.name.split('_')[0];
+        if (!map[key]) map[key] = { name: key, photos: [], videos: [] };
+        if (f.mimeType.startsWith('video')) map[key].videos.push(f);
+        else map[key].photos.push(f);
       }
 
       const sorted = Object.values(map)
@@ -286,179 +301,137 @@ export const MediaPage = () => {
 
       setPassengers(sorted);
     } catch (err: any) {
-      setError(err.message ?? 'Failed to load media');
+      setError(err.message ?? 'Could not load gallery');
     } finally {
       setLoading(false);
     }
   }, []);
 
-  useEffect(() => { fetchFiles(); }, [fetchFiles]);
+  useEffect(() => { fetchPassengers(); }, [fetchPassengers]);
 
   const filtered = passengers.filter((p) =>
-    p.name.toLowerCase().includes(search.toLowerCase())
+    prettyName(p.name).toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-5 py-8 animate-fade-in-up">
-
-      {/* Back */}
-      <button
-        onClick={() => navigate('/')}
-        className="group flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors mb-8 font-mono text-sm uppercase tracking-wider"
-      >
-        <ArrowLeft size={15} className="group-hover:-translate-x-1 transition-transform" aria-hidden="true" />
-        Back to NomadicZack
-      </button>
-
-      {/* ── Hero header ───────────────────────────────────────────────────── */}
-      <div className="text-center mb-12">
-        <div
-          className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-brand-accent/10 text-brand-accent mb-6 border border-brand-accent/20"
-          style={{ boxShadow: '0 0 40px rgba(6,182,212,0.1)' }}
+    <div className="min-h-screen bg-brand-dark text-white">
+      {/* Header */}
+      <div className="max-w-5xl mx-auto px-4 pt-8 pb-6">
+        <button
+          onClick={() => navigate('/')}
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition mb-6 text-sm font-mono"
         >
-          <Camera size={36} aria-hidden="true" />
-        </div>
-        <h1 className="text-4xl md:text-5xl font-black text-white font-mono mb-3">
-          YOUR <span className="text-brand-accent">SKYDIVE MEDIA</span>
-        </h1>
-        <p className="text-slate-400 text-lg max-w-xl mx-auto leading-relaxed">
-          Preview your jump footage, download your photos, and grab your full handcam video — all in one place.
-        </p>
-      </div>
+          <ArrowLeft size={16} /> Back home
+        </button>
 
-      {/* ── Two-column intro ──────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
-
-        {/* Preview card */}
-        <div className="card p-7 border-brand-accent/20 flex flex-col gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-brand-accent/15 rounded-xl flex items-center justify-center text-brand-accent flex-shrink-0">
-              <Video size={20} />
-            </div>
-            <h2 className="text-white font-bold font-mono text-lg">Jump Gallery</h2>
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-mono uppercase tracking-widest mb-4">
+            <Wind size={12} /> Skydive Media
           </div>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Search your name below to find your blurred preview videos and photos. Click to play, swipe through your shots, and see every moment of your freefall.
+          <h1 className="text-4xl md:text-6xl font-black tracking-tighter font-mono mb-3">
+            YOUR <span className="text-brand-accent">JUMP</span>, IMMORTALIZED
+          </h1>
+          <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Find your name below to see your preview photos and teaser video. To unlock the full unblurred footage,
+            tap the Buy button — clear photos and your edited handcam video will be emailed to you within hours.
           </p>
-          <div className="flex items-center gap-2 text-brand-accent/80 text-xs font-mono uppercase tracking-wider">
-            <Image size={12} />
-            <span>Preview photos &amp; teaser video included</span>
-          </div>
         </div>
 
-        {/* Buy card */}
-        <div className="card p-7 border-brand-accent/30 flex flex-col gap-4" style={{ background: 'linear-gradient(135deg, rgba(6,182,212,0.06), rgba(59,130,246,0.06))' }}>
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-500/15 rounded-xl flex items-center justify-center text-blue-400 flex-shrink-0">
-              <CreditCard size={20} />
+        {/* Top info cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div className="bg-brand-card border border-white/10 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <Camera size={18} className="text-brand-accent" />
+              <h3 className="font-mono font-bold text-sm uppercase tracking-wider">Jump Gallery</h3>
             </div>
-            <h2 className="text-white font-bold font-mono text-lg">Get the Full Video</h2>
+            <p className="text-slate-400 text-sm leading-relaxed">
+              Every jumper gets a folder of blurred preview photos plus a watermarked teaser video.
+              Browse below and find yours.
+            </p>
           </div>
-          <p className="text-slate-400 text-sm leading-relaxed">
-            Love what you see? Purchase your complete, uncompressed 4K handcam footage through secure Square checkout. Delivered to your inbox within 24 hours.
+          <div className="bg-brand-card border border-brand-accent/30 rounded-2xl p-5">
+            <div className="flex items-center gap-2 mb-2">
+              <CreditCard size={18} className="text-brand-accent" />
+              <h3 className="font-mono font-bold text-sm uppercase tracking-wider text-brand-accent">Get The Full Video</h3>
+            </div>
+            <p className="text-slate-400 text-sm leading-relaxed mb-3">
+              Pay through Square and I'll send the clear, watermark-free version directly to your inbox.
+            </p>
+            <a
+              href={CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-brand-accent hover:bg-white text-brand-dark font-mono text-xs font-bold uppercase tracking-wider transition"
+            >
+              <ShoppingCart size={14} /> Buy Now <ExternalLink size={12} />
+            </a>
+          </div>
+        </div>
+
+        {/* Search */}
+        <div className="relative max-w-md mx-auto mb-2">
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
+          <input
+            type="text"
+            placeholder="Search your first name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-12 pr-4 py-3 rounded-full bg-brand-card border border-white/10 focus:border-brand-accent focus:outline-none text-white placeholder-slate-500 font-mono text-sm"
+          />
+        </div>
+        {!loading && !error && (
+          <p className="text-center text-slate-500 text-xs font-mono">
+            {filtered.length} {filtered.length === 1 ? 'jumper' : 'jumpers'} {search && `matching "${search}"`}
           </p>
-          <a
-            href={CHECKOUT_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono text-sm uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20 mt-auto"
-          >
-            <ShoppingCart size={15} />
-            Buy via Square
-            <ExternalLink size={13} />
-          </a>
-        </div>
-
-      </div>
-
-
-
-      {/* ── Divider ───────────────────────────────────────────────────────── */}
-      <div className="flex items-center gap-4 mb-10">
-        <div className="flex-1 h-px bg-white/10" />
-        <div className="flex items-center gap-2 text-brand-accent font-mono text-xs uppercase tracking-widest">
-          <Play size={12} fill="currentColor" />
-          <span>Jump Gallery</span>
-          <Play size={12} fill="currentColor" className="rotate-180" />
-        </div>
-        <div className="flex-1 h-px bg-white/10" />
-      </div>
-
-      {/* ── Search ────────────────────────────────────────────────────────── */}
-      <div className="relative max-w-md mx-auto mb-10">
-        <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" aria-hidden="true" />
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Type your first name to find your jump…"
-          className="w-full bg-brand-surface border border-white/10 rounded-full px-5 py-3 pl-11 text-white placeholder-slate-600 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-colors font-mono text-sm"
-          aria-label="Search for your jump"
-        />
-        {search && (
-          <button
-            onClick={() => setSearch('')}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
-            aria-label="Clear search"
-          >
-            <X size={14} />
-          </button>
         )}
       </div>
 
-      {/* ── States ────────────────────────────────────────────────────────── */}
-      {loading && (
-        <div className="flex flex-col items-center gap-4 py-20 text-slate-500">
-          <Loader2 size={30} className="animate-spin text-brand-accent" />
-          <p className="font-mono text-sm uppercase tracking-widest">Loading your jumps…</p>
-        </div>
-      )}
+      {/* Gallery */}
+      <div className="max-w-5xl mx-auto px-4 pb-12">
+        {loading && (
+          <div className="flex flex-col items-center justify-center py-16 text-slate-400">
+            <Loader2 size={32} className="animate-spin mb-3 text-brand-accent" />
+            <p className="font-mono text-sm">Loading jumps from the cloud...</p>
+          </div>
+        )}
 
-      {error && (
-        <div className="text-center py-20">
-          <p className="text-red-400 font-mono mb-4">{error}</p>
-          <button
-            onClick={fetchFiles}
-            className="px-6 py-2 rounded-full glass hover:bg-white/10 text-white font-mono text-sm uppercase tracking-wider transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      )}
+        {error && (
+          <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-6 text-center">
+            <p className="text-red-400 font-mono text-sm mb-2">Couldn't load gallery</p>
+            <p className="text-slate-400 text-xs">{error}</p>
+            <button onClick={fetchPassengers} className="mt-4 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-mono uppercase tracking-wider transition">
+              Try Again
+            </button>
+          </div>
+        )}
 
-      {!loading && !error && filtered.length === 0 && (
-        <div className="text-center py-20">
-          <Wind size={44} className="text-slate-700 mx-auto mb-4" />
-          <p className="text-slate-500 font-mono text-sm">
-            {search ? `No results for "${search}"` : 'No media uploaded yet — check back soon!'}
-          </p>
-        </div>
-      )}
+        {!loading && !error && filtered.length === 0 && (
+          <div className="text-center py-12 text-slate-400">
+            <p className="font-mono text-sm">
+              {search ? `No jumpers found for "${search}"` : 'No jumps in the gallery yet.'}
+            </p>
+          </div>
+        )}
 
-      {/* ── Gallery grid ──────────────────────────────────────────────────── */}
-      {!loading && !error && filtered.length > 0 && (
-        <>
-          <p className="text-slate-600 text-xs font-mono uppercase tracking-widest text-center mb-6">
-            {filtered.length} {filtered.length === 1 ? 'jumper' : 'jumpers'} found
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {!loading && !error && filtered.length > 0 && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filtered.map((p) => (
               <PassengerCard
                 key={p.name}
                 passenger={p}
-                onClick={() => setSelected({ passenger: p, startIndex: 0 })}
+                onOpen={(i) => setSelected({ passenger: p, startIndex: i })}
               />
             ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
 
-      {/* ── Not here CTA ──────────────────────────────────────────────────── */}
-      {!loading && !error && (
-        <div className="mt-14 text-center card border-white/10 p-8">
-          <p className="text-white font-bold font-mono mb-2">Don't see your name?</p>
-          <p className="text-slate-400 text-sm mb-6 max-w-sm mx-auto">
-            Media is uploaded within 24 hours. If you jumped recently, check back soon — or reach out directly.
+      {/* Don't see your name */}
+      <div className="max-w-3xl mx-auto px-4 pb-10">
+        <div className="bg-gradient-to-br from-brand-card to-brand-dark border border-white/10 rounded-2xl p-6 text-center">
+          <h3 className="text-xl font-bold font-mono uppercase tracking-wider mb-2">Don't see your name?</h3>
+          <p className="text-slate-400 text-sm mb-4 max-w-md mx-auto">
+            New jumps usually appear within a few hours. If you jumped recently and don't see your name yet, reach out directly.
           </p>
           <a
             href="mailto:zack@nomadiczack.com?subject=My Jump Media"
@@ -467,32 +440,35 @@ export const MediaPage = () => {
             Contact Zack
           </a>
         </div>
-      )}
+      </div>
 
-      {/* ── FAQ row ───────────────────────────────────────────────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-        <div className="glass rounded-2xl p-5">
-          <Clock size={18} className="text-brand-accent mb-3" aria-hidden="true" />
-          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">When will I get it?</h5>
-          <p className="text-slate-400 text-sm leading-relaxed">Usually same day, within 24 hours of your jump.</p>
+      {/* FAQ row */}
+      <div className="max-w-5xl mx-auto px-4 pb-16 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-brand-card border border-white/10 rounded-2xl p-5">
+          <Clock size={18} className="text-brand-accent mb-2" />
+          <h4 className="font-mono font-bold text-sm uppercase tracking-wider mb-1">When will I get it?</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Previews appear within hours of your jump. After purchase, the full clear video is sent within 24 hours.
+          </p>
         </div>
-        <div className="glass rounded-2xl p-5">
-          <Package size={18} className="text-brand-accent mb-3" aria-hidden="true" />
-          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">What's included?</h5>
+        <div className="bg-brand-card border border-white/10 rounded-2xl p-5">
+          <Package size={18} className="text-brand-accent mb-2" />
+          <h4 className="font-mono font-bold text-sm uppercase tracking-wider mb-1">What's included</h4>
           <ul className="text-slate-400 text-sm leading-relaxed space-y-1">
-            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Edited video</li>
-            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Raw videos</li>
-            <li className="flex items-center gap-2"><span className="text-brand-accent">—</span> Photos</li>
+            <li>— Edited video</li>
+            <li>— Raw videos</li>
+            <li>— Photos</li>
           </ul>
         </div>
-        <div className="glass rounded-2xl p-5">
-          <HelpCircle size={18} className="text-brand-accent mb-3" aria-hidden="true" />
-          <h5 className="text-white font-bold mb-1.5 font-mono text-sm uppercase">Need help?</h5>
-          <p className="text-slate-400 text-sm leading-relaxed">Email zack@nomadiczack.com and he'll sort you out.</p>
+        <div className="bg-brand-card border border-white/10 rounded-2xl p-5">
+          <HelpCircle size={18} className="text-brand-accent mb-2" />
+          <h4 className="font-mono font-bold text-sm uppercase tracking-wider mb-1">Need help?</h4>
+          <p className="text-slate-400 text-sm leading-relaxed">
+            Email <a href="mailto:zack@nomadiczack.com" className="text-brand-accent hover:underline">zack@nomadiczack.com</a> anytime.
+          </p>
         </div>
       </div>
 
-      {/* Lightbox */}
       {selected && (
         <Lightbox
           passenger={selected.passenger}
