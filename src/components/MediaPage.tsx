@@ -297,7 +297,13 @@ export const MediaPage = () => {
           photos: p.photos.sort((a, b) => a.name.localeCompare(b.name)),
           videos: p.videos.sort((a, b) => a.name.localeCompare(b.name)),
         }))
-        .sort((a, b) => a.name.localeCompare(b.name));
+        // Newest first - falls back to alphabetical if times are equal/missing
+        .sort((a, b) => {
+          if (b.newestFileTime !== a.newestFileTime) {
+            return b.newestFileTime - a.newestFileTime;
+          }
+          return a.name.localeCompare(b.name);
+        });
 
       setPassengers(sorted);
     } catch (err: any) {
