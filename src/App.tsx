@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import {
   Instagram, Facebook, Youtube, Wallet, DollarSign,
@@ -9,7 +9,6 @@ import { Layout }              from './components/Layout';
 import { ProfileHeader }       from './components/ProfileHeader';
 import { SocialButton }        from './components/SocialButton';
 import { FeaturedVideo }       from './components/FeaturedVideo';
-import { ExpeditionsCard }     from './components/ExpeditionsCard';
 import { TestimonialCarousel } from './components/TestimonialCarousel';
 import { AboutPage }           from './components/AboutPage';
 import { WorkWithMePage }      from './components/WorkWithMePage';
@@ -58,10 +57,14 @@ const LINKS: LinkItem[] = [
 // ─── Home page ────────────────────────────────────────────────────────────────
 
 const HomePage = () => {
-  const [location, setLocation] = useState('Locating…');
+  // TEMP: live-location feed hidden — showing a fixed location for now.
+  // To restore, delete the line below and un-comment the block that follows.
+  const location = 'Bangkok, Thailand';
   const socialLinks  = LINKS.filter((l) => l.category === LinkCategory.SOCIAL);
   const supportLinks = LINKS.filter((l) => l.category === LinkCategory.SUPPORT);
 
+  /*
+  const [location, setLocation] = useState('Locating…');
   useEffect(() => {
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7Ty_cQhXUU0PXT2u2-LtmW_K8TFKa5luFJGSPRZqEbcduP5NojkcLJ4qASHSZuOPdaw4UMe4yvnu_/pub?output=csv';
     fetch(sheetUrl)
@@ -76,6 +79,7 @@ const HomePage = () => {
       })
       .catch(() => setLocation('Raeford, NC, USA'));
   }, []);
+  */
 
   return (
     <>
@@ -86,7 +90,6 @@ const HomePage = () => {
           {/* Left column */}
           <div className="md:col-span-7 flex flex-col gap-8 order-1">
             <FeaturedVideo videoId="mqipTSa6EQU" />
-            <ExpeditionsCard />
             <TestimonialCarousel onReadMore={() => {}} />
           </div>
 
