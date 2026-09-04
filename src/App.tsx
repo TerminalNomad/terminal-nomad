@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import {
   Instagram, Facebook, Youtube, Wallet, DollarSign,
-  Zap, Square, Mail, MessageSquareQuote, Video,
+  Zap, Square, Mail, MessageSquareQuote, Video, Star,
 } from 'lucide-react';
 
 import { Layout }              from './components/Layout';
@@ -16,6 +16,7 @@ import { TestimonialsPage }    from './components/TestimonialsPage';
 import { NewsletterPage }      from './components/NewsletterPage';
 import { SupportPage }         from './components/SupportPage';
 import { MediaPage }           from './components/MediaPage';
+import { ReviewTipPage }       from './components/ReviewTipPage';
 import { LinkItem, LinkCategory } from './types';
 
 // ─── Custom icons ─────────────────────────────────────────────────────────────
@@ -119,6 +120,10 @@ const HomePage = () => {
                 <Video size={15} aria-hidden="true" />
                 Skydive Media
               </Link>
+              <Link to="/review" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono py-2 hover:bg-white/5 rounded-lg w-full justify-center">
+                <Star size={15} aria-hidden="true" />
+                Review &amp; Tip
+              </Link>
               <a href="mailto:zack@terminalnomad.com" className="inline-flex items-center gap-2 text-slate-400 hover:text-brand-accent transition-colors text-sm font-mono py-2 hover:bg-white/5 rounded-lg w-full justify-center">
                 <Mail size={15} aria-hidden="true" />
                 Business Inquiries
@@ -145,6 +150,9 @@ export default function App() {
         <Route path="/newsletter"   element={<NewsletterPage />} />
         <Route path="/support"      element={<SupportPage links={LINKS} />} />
         <Route path="/media"         element={<MediaPage />} />
+        <Route path="/review"        element={<ReviewTipPage />} />
+        <Route path="/thanks"        element={<ReviewTipPage />} />
+        <Route path="/tip"           element={<ReviewTipPage />} />
         {/* Catch-all — redirect unknown URLs to home */}
         <Route path="*"             element={<HomePage />} />
       </Route>

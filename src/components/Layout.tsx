@@ -1,10 +1,12 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Popup } from './Popup';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Layout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const isReviewTipPage = ['/review', '/thanks', '/tip'].includes(location.pathname);
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-dark relative overflow-hidden">
@@ -18,10 +20,12 @@ export const Layout = () => {
       />
 
       {/* Popup — shown after 10s, once per session */}
-      <Popup
-        onSubscribe={() => navigate('/newsletter')}
-        onSupport={() => navigate('/support')}
-      />
+      {!isReviewTipPage && (
+        <Popup
+          onSubscribe={() => navigate('/newsletter')}
+          onSupport={() => navigate('/support')}
+        />
+      )}
 
       {/* Page content rendered by router */}
       <div className="flex-grow w-full relative z-40">
