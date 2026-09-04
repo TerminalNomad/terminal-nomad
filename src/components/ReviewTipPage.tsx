@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import {
   ArrowLeft,
   Check,
+  ChevronsLeft,
+  ChevronsRight,
   ExternalLink,
   Heart,
 } from 'lucide-react';
@@ -65,7 +67,7 @@ export const ReviewTipPage = () => {
         </Link>
 
         <header className="mb-4 text-center sm:mb-6">
-          <div className="mx-auto mb-2 h-20 w-20 overflow-hidden rounded-full border-2 border-brand-accent/60 bg-brand-surface shadow-2xl shadow-cyan-500/20 sm:mb-4 sm:h-24 sm:w-24">
+          <div className="mx-auto mb-2 h-[8.75rem] w-[8.75rem] overflow-hidden rounded-full border-2 border-brand-accent/60 bg-brand-surface shadow-2xl shadow-cyan-500/20 sm:mb-4 sm:h-[10.5rem] sm:w-[10.5rem]">
             <img
               src="/profile_photo.jpg"
               alt="Zack"
@@ -86,12 +88,22 @@ export const ReviewTipPage = () => {
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-auto mt-3 inline-flex min-h-11 items-center justify-center rounded-full border border-brand-accent/35 bg-brand-accent/10 px-5 py-2 text-base font-black text-white shadow-lg shadow-cyan-500/10 transition-all hover:border-brand-accent/70 hover:bg-brand-accent/15 active:scale-[.98] sm:mt-5 sm:min-h-12 sm:px-6 sm:py-3 sm:text-lg"
+            className="mx-auto mt-3 inline-flex min-h-11 items-center justify-center gap-1 rounded-full border border-brand-accent/35 bg-brand-accent/10 px-3 py-2 text-base font-black text-white shadow-lg shadow-cyan-500/10 transition-all hover:border-brand-accent/70 hover:bg-brand-accent/15 active:scale-[.98] sm:mt-5 sm:min-h-12 sm:gap-2 sm:px-5 sm:py-3 sm:text-lg"
           >
+            <ChevronsRight
+              size={20}
+              className="shrink-0 animate-bounce-x text-brand-accent drop-shadow-[0_0_7px_rgba(34,211,238,0.8)] sm:h-6 sm:w-6"
+              aria-hidden="true"
+            />
             <span>Review your jump with</span>
             <span className="ml-1.5 font-mono text-lg font-black tracking-[0.08em] text-brand-accent drop-shadow-[0_0_8px_rgba(34,211,238,0.7)] sm:text-xl">
               ZACK!
             </span>
+            <ChevronsLeft
+              size={20}
+              className="shrink-0 animate-bounce-x-reverse text-brand-accent drop-shadow-[0_0_7px_rgba(34,211,238,0.8)] sm:h-6 sm:w-6"
+              aria-hidden="true"
+            />
           </a>
         </header>
 
