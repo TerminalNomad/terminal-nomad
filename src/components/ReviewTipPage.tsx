@@ -50,7 +50,7 @@ export const ReviewTipPage = () => {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-hidden px-4 pb-16 pt-5 sm:px-6 sm:pt-8">
+    <main className="relative min-h-screen overflow-hidden px-4 pb-16 pt-3 sm:px-6 sm:pt-8">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-[34rem] opacity-35"
         style={{ background: 'radial-gradient(circle at 50% 0%, rgba(6,182,212,.55), transparent 62%)' }}
@@ -58,14 +58,14 @@ export const ReviewTipPage = () => {
       <div className="relative mx-auto w-full max-w-xl">
         <Link
           to="/"
-          className="mb-5 inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+          className="mb-2 inline-flex min-h-9 items-center gap-2 rounded-full px-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-400 transition-colors hover:bg-white/5 hover:text-white sm:mb-5 sm:min-h-11"
         >
           <ArrowLeft size={16} aria-hidden="true" />
           NomadicZack
         </Link>
 
-        <header className="mb-6 text-center">
-          <div className="mx-auto mb-4 h-24 w-24 overflow-hidden rounded-full border-2 border-brand-accent/60 bg-brand-surface shadow-2xl shadow-cyan-500/20">
+        <header className="mb-4 text-center sm:mb-6">
+          <div className="mx-auto mb-2 h-20 w-20 overflow-hidden rounded-full border-2 border-brand-accent/60 bg-brand-surface shadow-2xl shadow-cyan-500/20 sm:mb-4 sm:h-24 sm:w-24">
             <img
               src="/profile_photo.jpg"
               alt="Zack"
@@ -73,20 +73,20 @@ export const ReviewTipPage = () => {
               style={{ objectPosition: '15% 15%' }}
             />
           </div>
-          <p className="mb-2 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brand-accent">
+          <p className="mb-1 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-brand-accent sm:mb-2 sm:text-[11px] sm:tracking-[0.25em]">
             Thanks for sharing the sky
           </p>
-          <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
+          <h1 className="text-3xl font-black tracking-tight text-white sm:text-5xl">
             What a <span className="text-gradient">ride.</span>
           </h1>
-          <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-400 sm:text-base">
+          <p className="mx-auto mt-2 max-w-md text-sm leading-5 text-slate-400 sm:mt-3 sm:text-base sm:leading-6">
             I hope your adventure is something you never forget. Thanks for trusting the crew and me with your experience.
           </p>
           <a
             href={GOOGLE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mx-auto mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-brand-accent/35 bg-brand-accent/10 px-6 py-3 text-base font-black text-white shadow-lg shadow-cyan-500/10 transition-all hover:border-brand-accent/70 hover:bg-brand-accent/15 active:scale-[.98] sm:text-lg"
+            className="mx-auto mt-3 inline-flex min-h-11 items-center justify-center rounded-full border border-brand-accent/35 bg-brand-accent/10 px-5 py-2 text-base font-black text-white shadow-lg shadow-cyan-500/10 transition-all hover:border-brand-accent/70 hover:bg-brand-accent/15 active:scale-[.98] sm:mt-5 sm:min-h-12 sm:px-6 sm:py-3 sm:text-lg"
           >
             <span>Review your jump with</span>
             <span className="ml-1.5 font-mono text-lg font-black tracking-[0.08em] text-brand-accent drop-shadow-[0_0_8px_rgba(34,211,238,0.7)] sm:text-xl">
@@ -95,43 +95,44 @@ export const ReviewTipPage = () => {
           </a>
         </header>
 
-        <section className="card mb-5 overflow-hidden p-5 shadow-2xl sm:p-7" aria-labelledby="tip-heading">
-          <div className="mb-5 flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-pink-400/10 text-pink-300 ring-1 ring-pink-300/20">
-              <Heart size={25} aria-hidden="true" />
+        <section className="card mb-5 overflow-hidden p-4 shadow-2xl sm:p-7" aria-labelledby="tip-heading">
+          <div className="mb-3 flex items-start gap-3 sm:mb-5 sm:gap-4">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-pink-400/10 text-pink-300 ring-1 ring-pink-300/20 sm:h-12 sm:w-12 sm:rounded-2xl">
+              <Heart size={21} aria-hidden="true" />
             </div>
             <div>
-              <h2 id="tip-heading" className="text-xl font-black text-white">Leave a tip</h2>
-              <p className="mt-1 text-sm leading-5 text-slate-400">
-                Tips are always appreciated and never expected. Choose whichever app is easiest for you.
+              <h2 id="tip-heading" className="text-lg font-black text-white sm:text-xl">Leave a tip</h2>
+              <p className="mt-0.5 text-xs leading-4 text-slate-400 sm:mt-1 sm:text-sm sm:leading-5">
+                <span className="block">Tips are appreciated and never expected.</span>
+                <span className="block">Choose any payment method.</span>
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-2 sm:gap-3">
             {PAYMENT_LINKS.map(({ name, url, color, icon }) => (
               <a
                 key={name}
                 href={url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex min-h-20 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 transition-all hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 active:scale-[.98]"
+                className="group flex min-h-14 items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-2.5 transition-all hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 active:scale-[.98] sm:min-h-20 sm:gap-3 sm:rounded-2xl sm:p-3"
                 style={{ borderColor: `${color}35` }}
                 aria-label={`Tip with ${name}`}
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30">
-                  <img src={icon} alt="" className="h-6 w-6 object-contain" aria-hidden="true" />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-black/30 sm:h-11 sm:w-11 sm:rounded-xl">
+                  <img src={icon} alt="" className="h-5 w-5 object-contain sm:h-6 sm:w-6" aria-hidden="true" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <strong className="block text-sm text-white sm:text-base">{name}</strong>
                 </span>
-                <ExternalLink size={13} className="shrink-0 text-slate-600 transition-colors group-hover:text-slate-300" aria-hidden="true" />
+                <ExternalLink size={12} className="shrink-0 text-slate-600 transition-colors group-hover:text-slate-300" aria-hidden="true" />
               </a>
             ))}
 
-            <div className="flex min-h-20 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30 text-white">
-                <img src="/payment-icons/apple.svg" alt="" className="h-6 w-6 object-contain" aria-hidden="true" />
+            <div className="flex min-h-14 items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-2.5 sm:min-h-20 sm:gap-3 sm:rounded-2xl sm:p-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-black/30 text-white sm:h-11 sm:w-11 sm:rounded-xl">
+                <img src="/payment-icons/apple.svg" alt="" className="h-5 w-5 object-contain sm:h-6 sm:w-6" aria-hidden="true" />
               </span>
               <span className="min-w-0 flex-1">
                 <strong className="block text-sm text-white sm:text-base">Apple Cash</strong>
@@ -139,7 +140,7 @@ export const ReviewTipPage = () => {
             </div>
           </div>
 
-          <div className="mt-5 flex items-start gap-3 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-3 text-xs leading-5 text-slate-400">
+          <div className="mt-3 flex items-start gap-2 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-2.5 text-[11px] leading-4 text-slate-400 sm:mt-5 sm:gap-3 sm:p-3 sm:text-xs sm:leading-5">
             <Check size={16} className="mt-0.5 shrink-0 text-emerald-400" aria-hidden="true" />
             <p>Leaving a review and leaving a tip are completely separate. Both are always optional.</p>
           </div>
