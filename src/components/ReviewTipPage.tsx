@@ -88,7 +88,10 @@ export const ReviewTipPage = () => {
             rel="noopener noreferrer"
             className="mx-auto mt-5 inline-flex min-h-12 items-center justify-center rounded-full border border-brand-accent/35 bg-brand-accent/10 px-6 py-3 text-base font-black text-white shadow-lg shadow-cyan-500/10 transition-all hover:border-brand-accent/70 hover:bg-brand-accent/15 active:scale-[.98] sm:text-lg"
           >
-            Review your jump with Zack!
+            <span>Review your jump with</span>
+            <span className="ml-1.5 font-mono text-lg font-black tracking-[0.08em] text-brand-accent drop-shadow-[0_0_8px_rgba(34,211,238,0.7)] sm:text-xl">
+              ZACK!
+            </span>
           </a>
         </header>
 
