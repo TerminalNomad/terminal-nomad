@@ -127,13 +127,65 @@ export const ReviewTipPage = () => {
             What a <span className="text-gradient">ride.</span>
           </h1>
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-slate-400 sm:text-base">
-            I hope your adventure is something you never forget. Thanks for trusting the crew—and me—with your experience.
+            I hope your adventure is something you never forget. Thanks for trusting the crew and me with your experience.
           </p>
           <div className="mx-auto mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-200">
             <span className="text-slate-500">You jumped with</span>
             <strong className="font-mono text-white">Zack</strong>
           </div>
         </header>
+
+        <section className="card mb-5 overflow-hidden p-5 shadow-2xl sm:p-7" aria-labelledby="tip-heading">
+          <div className="mb-5 flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-pink-400/10 text-pink-300 ring-1 ring-pink-300/20">
+              <Heart size={25} aria-hidden="true" />
+            </div>
+            <div>
+              <h2 id="tip-heading" className="text-xl font-black text-white">Leave a tip</h2>
+              <p className="mt-1 text-sm leading-5 text-slate-400">
+                Tips are always appreciated and never expected. Choose whichever app is easiest for you.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {PAYMENT_LINKS.map(({ name, detail, url, color, icon: Icon }) => (
+              <a
+                key={name}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex min-h-16 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 transition-all hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 active:scale-[.98]"
+                style={{ borderColor: `${color}35` }}
+                aria-label={`Tip with ${name}`}
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30" style={{ color }}>
+                  <Icon size={21} aria-hidden="true" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <strong className="block text-base text-white">{name}</strong>
+                  <span className="block truncate text-xs text-slate-500">{detail}</span>
+                </span>
+                <ExternalLink size={14} className="shrink-0 text-slate-600 transition-colors group-hover:text-slate-300" aria-hidden="true" />
+              </a>
+            ))}
+
+            <div className="flex min-h-16 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 sm:col-span-2">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30 text-white">
+                <Smartphone size={21} aria-hidden="true" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <strong className="block text-base text-white">Apple Cash</strong>
+                <span className="block text-xs leading-5 text-slate-500">Ask Zack to start Tap to Cash while you are together.</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-start gap-3 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-3 text-xs leading-5 text-slate-400">
+            <Check size={16} className="mt-0.5 shrink-0 text-emerald-400" aria-hidden="true" />
+            <p>Leaving a review and leaving a tip are completely separate. Both are always optional.</p>
+          </div>
+        </section>
 
         <section className="card mb-5 overflow-hidden p-5 shadow-2xl sm:p-7" aria-labelledby="review-heading">
           <div className="mb-5 flex items-start gap-4">
@@ -195,65 +247,13 @@ export const ReviewTipPage = () => {
                 className="mt-3 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 font-bold text-white transition-colors enabled:hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-35"
               >
                 {copied ? <Check size={18} className="text-emerald-400" aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
-                {copied ? 'Copied—paste it into Google' : 'Copy my draft'}
+                {copied ? 'Copied. Paste it into Google' : 'Copy my draft'}
               </button>
               <p className="mt-3 text-center text-xs leading-5 text-slate-600">
                 Your words stay on this device unless you choose to copy them.
               </p>
             </div>
           </details>
-        </section>
-
-        <section className="card overflow-hidden p-5 shadow-2xl sm:p-7" aria-labelledby="tip-heading">
-          <div className="mb-5 flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-pink-400/10 text-pink-300 ring-1 ring-pink-300/20">
-              <Heart size={25} aria-hidden="true" />
-            </div>
-            <div>
-              <h2 id="tip-heading" className="text-xl font-black text-white">Leave a tip</h2>
-              <p className="mt-1 text-sm leading-5 text-slate-400">
-                Tips are always appreciated and never expected. Choose whichever app is easiest for you.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            {PAYMENT_LINKS.map(({ name, detail, url, color, icon: Icon }) => (
-              <a
-                key={name}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex min-h-16 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 transition-all hover:-translate-y-0.5 hover:bg-white/10 active:translate-y-0 active:scale-[.98]"
-                style={{ borderColor: `${color}35` }}
-                aria-label={`Tip with ${name}`}
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30" style={{ color }}>
-                  <Icon size={21} aria-hidden="true" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <strong className="block text-base text-white">{name}</strong>
-                  <span className="block truncate text-xs text-slate-500">{detail}</span>
-                </span>
-                <ExternalLink size={14} className="shrink-0 text-slate-600 transition-colors group-hover:text-slate-300" aria-hidden="true" />
-              </a>
-            ))}
-
-            <div className="flex min-h-16 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-3 sm:col-span-2">
-              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-black/30 text-white">
-                <Smartphone size={21} aria-hidden="true" />
-              </span>
-              <span className="min-w-0 flex-1">
-                <strong className="block text-base text-white">Apple Cash</strong>
-                <span className="block text-xs leading-5 text-slate-500">Ask Zack to start Tap to Cash while you’re together.</span>
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-5 flex items-start gap-3 rounded-xl border border-emerald-400/15 bg-emerald-400/5 p-3 text-xs leading-5 text-slate-400">
-            <Check size={16} className="mt-0.5 shrink-0 text-emerald-400" aria-hidden="true" />
-            <p>Leaving a review and leaving a tip are completely separate. Both are always optional.</p>
-          </div>
         </section>
 
         <p className="mt-7 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-slate-700">

@@ -16,7 +16,7 @@ export const TestimonialsPage = () => {
           <MessageSquareQuote size={30} aria-hidden="true" />
         </div>
         <h1 className="text-4xl md:text-5xl font-black text-white font-mono mb-4">FLIGHT <span className="text-brand-accent">LOGS</span></h1>
-        <p className="text-slate-400 text-lg max-w-xl mx-auto">Stories from the sky — from those who've taken the leap.</p>
+        <p className="text-slate-400 text-lg max-w-xl mx-auto">Stories from the sky, from those who've taken the leap.</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {TESTIMONIALS.map((review) => (

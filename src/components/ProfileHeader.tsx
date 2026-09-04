@@ -36,7 +36,7 @@ export const ProfileHeader = ({ location }: ProfileHeaderProps) => {
         <div className="w-36 h-36 md:w-48 md:h-48 rounded-full border-4 border-brand-dark shadow-2xl mb-5 overflow-hidden ring-2 ring-brand-accent/40 flex-shrink-0">
           <img
             src={PROFILE_PHOTO}
-            alt="Zack — NomadicZack skydiving instructor"
+            alt="Zack, NomadicZack skydiving instructor"
             className="w-full h-full object-cover"
             style={{ objectPosition: '15% 15%' }}
           />

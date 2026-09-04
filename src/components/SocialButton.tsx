@@ -17,7 +17,7 @@ export const SocialButton = ({ item }: SocialButtonProps) => {
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className="group relative flex items-center w-full p-3.5 transition-all duration-300 ease-out border rounded-xl overflow-hidden active:scale-95 bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
       style={color ? { borderColor: `${color}40` } : {}}
-      aria-label={`${title} — opens in new tab`}
+      aria-label={`${title}, opens in new tab`}
     >
       {/* Shimmer effect on hover */}
       <div

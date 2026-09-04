@@ -19,7 +19,7 @@ export const AboutPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14">
         <div className="space-y-5 text-slate-300 leading-relaxed text-base">
           <p><strong className="text-white">I don't just exist; I descend.</strong></p>
-          <p>My name is Zack. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth — I've dedicated my life to the art of human flight.</p>
+          <p>My name is Zack. Based out of Raeford, NC, but often found 13,000 feet above the most beautiful landscapes on Earth. I've dedicated my life to the art of human flight.</p>
           <p>What started as a curiosity quickly turned into an obsession, and then a lifestyle. Now, I travel the globe chasing horizons, teaching others how to fly, and capturing the raw, unfiltered beauty of the world from a perspective few ever get to see.</p>
           <p>Through my content, I aim to share the intensity of terminal velocity and the serenity of the canopy ride. Whether I'm carving clouds or editing the next drop, the mission is always the same: <span className="text-brand-accent font-semibold">Live vividly.</span></p>
         </div>

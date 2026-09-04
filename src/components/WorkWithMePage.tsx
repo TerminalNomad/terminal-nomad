@@ -41,7 +41,7 @@ export const WorkWithMePage = () => {
       </div>
       <div className="card border-brand-accent/30 p-8 text-center" style={{ background: 'linear-gradient(135deg, rgba(6,182,212,0.08), rgba(59,130,246,0.08))' }}>
         <h3 className="text-2xl font-bold text-white font-mono mb-2">Have something else in mind?</h3>
-        <p className="text-slate-300 mb-7">If it involves altitude, adrenaline, or adventure — I'm listening.</p>
+        <p className="text-slate-300 mb-7">If it involves altitude, adrenaline, or adventure, I'm listening.</p>
         <a href="mailto:zack@terminalnomad.com" className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-brand-accent hover:bg-white text-brand-dark font-bold font-mono text-sm uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-accent/20">Contact Me</a>
       </div>
     </div>

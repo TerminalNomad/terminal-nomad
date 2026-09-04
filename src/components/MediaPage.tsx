@@ -343,7 +343,7 @@ export const MediaPage = () => {
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto leading-relaxed">
             Find your name below to see your preview photos and teaser video. To unlock the full unblurred footage,
-            tap the Buy button — clear photos and your edited handcam video will be emailed to you within hours.
+            tap the Buy button. Clear photos and your edited handcam video will be emailed to you within hours.
           </p>
         </div>
 
@@ -355,7 +355,7 @@ export const MediaPage = () => {
               <h3 className="font-mono font-bold text-sm uppercase tracking-wider">Jump Gallery</h3>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              The previews below are <span className="text-white font-semibold">blurred</span> videos and a few <span className="text-white font-semibold">blurred</span> photos — just a taste of your jump.
+              The previews below are <span className="text-white font-semibold">blurred</span> videos and a few <span className="text-white font-semibold">blurred</span> photos, just a taste of your jump.
               Purchase the full package to get a much more thorough collection of clear photos and footage.
             </p>
             <p className="text-slate-500 text-xs leading-relaxed mt-2 italic">
@@ -552,9 +552,9 @@ export const MediaPage = () => {
           <Package size={18} className="text-brand-accent mb-2" />
           <h4 className="font-mono font-bold text-sm uppercase tracking-wider mb-1">What's included</h4>
           <ul className="text-slate-400 text-sm leading-relaxed space-y-1">
-            <li>— Edited video</li>
-            <li>— Raw videos</li>
-            <li>— Photos</li>
+            <li>Edited video</li>
+            <li>Raw videos</li>
+            <li>Photos</li>
           </ul>
         </div>
         <div className="bg-brand-card border border-white/10 rounded-2xl p-5">

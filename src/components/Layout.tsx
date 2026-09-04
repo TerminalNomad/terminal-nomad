@@ -19,7 +19,7 @@ export const Layout = () => {
         style={{ background: 'radial-gradient(ellipse, #06b6d4, transparent 70%)' }}
       />
 
-      {/* Popup — shown after 10s, once per session */}
+      {/* Popup shown after 10s, once per session */}
       {!isReviewTipPage && (
         <Popup
           onSubscribe={() => navigate('/newsletter')}

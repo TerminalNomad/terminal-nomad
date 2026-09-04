@@ -58,7 +58,7 @@ const LINKS: LinkItem[] = [
 // ─── Home page ────────────────────────────────────────────────────────────────
 
 const HomePage = () => {
-  // TEMP: live-location feed hidden — showing a fixed location for now.
+  // TEMP: live-location feed hidden, showing a fixed location for now.
   // To restore, delete the line below and un-comment the block that follows.
   const location = 'Bangkok, Thailand';
   const socialLinks  = LINKS.filter((l) => l.category === LinkCategory.SOCIAL);
@@ -153,7 +153,7 @@ export default function App() {
         <Route path="/review"        element={<ReviewTipPage />} />
         <Route path="/thanks"        element={<ReviewTipPage />} />
         <Route path="/tip"           element={<ReviewTipPage />} />
-        {/* Catch-all — redirect unknown URLs to home */}
+        {/* Catch-all redirect for unknown URLs */}
         <Route path="*"             element={<HomePage />} />
       </Route>
     </Routes>
